@@ -29,10 +29,16 @@
             color: goldenrod;
             margin-top: 20px;
         }
+        .horario {
+            font-size: 1.2em;
+            color: #aaffcc;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>LOJA DO DUQUE</h1>
+    <div class="horario" id="horario"></div>
     <div class="store" id="store"></div>
     <div class="loading" id="loading"></div>
 
@@ -64,6 +70,10 @@
             "O DUQUE está dormindo sob as cinzas de um antigo dragão."
         ];
 
+        function formatarHora(h, m) {
+            return h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
+        }
+
         function escolherItensAleatorios(quantidade) {
             let escolhidos = [];
             let usados = new Set();
@@ -77,13 +87,16 @@
             return escolhidos;
         }
 
-        function mostrarLoja() {
+        function mostrarLoja(horaInicio, minutoInicio, horaFim, minutoFim) {
             const storeDiv = document.getElementById("store");
             const loadingDiv = document.getElementById("loading");
+            const horarioDiv = document.getElementById("horario");
+
             storeDiv.innerHTML = "";
             loadingDiv.innerHTML = "";
+            horarioDiv.innerHTML = `LOJA ABERTA entre <strong>${formatarHora(horaInicio, minutoInicio)}</strong> e <strong>${formatarHora(horaFim, minutoFim)}</strong>`;
 
-            const itensHoje = escolherItensAleatorios(5); // mostra 5 itens por dia
+            const itensHoje = escolherItensAleatorios(5);
             itensHoje.forEach(item => {
                 const itemDiv = document.createElement("div");
                 itemDiv.classList.add("item");
@@ -93,22 +106,25 @@
         }
 
         function mostrarFechada() {
-            const loadingDiv = document.getElementById("loading");
             const storeDiv = document.getElementById("store");
+            const loadingDiv = document.getElementById("loading");
+            const horarioDiv = document.getElementById("horario");
+
             storeDiv.innerHTML = "";
+            horarioDiv.innerHTML = "";
             const frase = frasesDuque[Math.floor(Math.random() * frasesDuque.length)];
             loadingDiv.innerHTML = frase;
         }
 
-        // Definir horário aleatório local para abrir (por exemplo, entre 8h e 22h)
+        // Definir horário aleatório local para abrir
         const agora = new Date();
         const horaAgora = agora.getHours();
         const minutoAgora = agora.getMinutes();
 
-        // Salvar no localStorage o horário do dia para abrir a loja
         let horarioAbertura = localStorage.getItem("duque_abre_em");
+
         if (!horarioAbertura) {
-            const horaAleatoria = 8 + Math.floor(Math.random() * 14); // entre 8 e 21h
+            const horaAleatoria = 8 + Math.floor(Math.random() * 14); // 8h até 21h
             const minutoAleatorio = Math.floor(Math.random() * 60);
             horarioAbertura = `${horaAleatoria}:${minutoAleatorio}`;
             localStorage.setItem("duque_abre_em", horarioAbertura);
@@ -117,10 +133,14 @@
         const [horaAbertura, minutoAbertura] = horarioAbertura.split(":").map(Number);
         const minutosAbertura = horaAbertura * 60 + minutoAbertura;
         const minutosAgora = horaAgora * 60 + minutoAgora;
+        const duracaoMinutos = 23;
+        const minutosFechamento = minutosAbertura + duracaoMinutos;
 
-        // A loja abre por 23 minutos
-        if (minutosAgora >= minutosAbertura && minutosAgora <= minutosAbertura + 23) {
-            mostrarLoja();
+        const horaFechamento = Math.floor(minutosFechamento / 60);
+        const minutoFechamento = minutosFechamento % 60;
+
+        if (minutosAgora >= minutosAbertura && minutosAgora <= minutosFechamento) {
+            mostrarLoja(horaAbertura, minutoAbertura, horaFechamento, minutoFechamento);
         } else {
             mostrarFechada();
         }
