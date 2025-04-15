@@ -26,40 +26,6 @@
         return escolhidos;
     }
 
-    function mostrarLoja(horaInicio, minutoInicio, horaFim, minutoFim) {
-        const storeDiv = document.getElementById("store");
-        const loadingDiv = document.getElementById("loading");
-        const horarioDiv = document.getElementById("horario");
-
-        storeDiv.innerHTML = "";
-        loadingDiv.innerHTML = "";
-        horarioDiv.innerHTML = `LOJA ABERTA entre <strong>${formatarHora(horaInicio, minutoInicio)}</strong> e <strong>${formatarHora(horaFim, minutoFim)}</strong>`;
-
-        const itensHoje = escolherItensAleatorios(5);
-        itensHoje.forEach(item => {
-            const itemDiv = document.createElement("div");
-            itemDiv.classList.add("item");
-            itemDiv.innerHTML = `<img src="imagens/${item}" alt="${item}">`;
-            storeDiv.appendChild(itemDiv);
-        });
-
-        // Timer de contagem regressiva de 23 minutos para fechamento
-        const timerDiv = document.getElementById("timer");
-        let tempoRestante = 23 * 60; // 23 minutos em segundos
-
-        const intervalo = setInterval(() => {
-            const minutos = Math.floor(tempoRestante / 60);
-            const segundos = tempoRestante % 60;
-            timerDiv.innerHTML = `Faltam ${minutos}m ${segundos}s para o Duque ir embora.`;
-
-            tempoRestante--;
-            if (tempoRestante <= 0) {
-                clearInterval(intervalo);
-                timerDiv.innerHTML = "O Duque se foi. A loja está fechada.";
-            }
-        }, 1000);
-    }
-
     function mostrarFechada(proximaAbertura) {
         const storeDiv = document.getElementById("store");
         const loadingDiv = document.getElementById("loading");
