@@ -1,103 +1,114 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mercadorias do Duque</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #eee;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      font-size: 3em;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .item {
-      background-color: #222;
-      padding: 15px;
-      border: 1px solid #444;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .item-description {
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    .item-price {
-      margin-top: 8px;
-      font-weight: bold;
-      color: #4caf50;
-    }
-  </style>
-</head>
-<body>
+<div class="item" onclick="speak('Ah... O Machado Longhaft. Perfeito para ceifar gigantes. Forte, pesado, e cruel.')">
+  <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft">
+  <p><strong>Machado Longhaft</strong><br>Machado amaldiçoado de alcance estendido.<br><strong>Valor:</strong> 5.000 runas</p>
+</div>
 
-  <h1>Mercadorias do Duque</h1>
+<div class="item" onclick="speak('Corte limpo ou brutalidade? O Cutelo de Carniceiro entrega os dois.')">
+  <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Cutelo de Carniceiro">
+  <p><strong>Cutelo de Carniceiro</strong><br>Pesado, cruel e sedento por sangue.<br><strong>Valor:</strong> 4.200 runas</p>
+</div>
 
-  <div class="container">
-    <div class="item">
-      <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft">
-      <div class="item-description">Machado Longhaft - Um machado forjado para guerreiros de elite.</div>
-      <div class="item-price">Preço: 5000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('A Rapieira Espinhosa. Cada perfuração carrega agonia e pestilência.')">
+  <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
+  <p><strong>Rapieira Espinhosa</strong><br>Inflige podridão escarlate com elegância.<br><strong>Valor:</strong> 4.000 runas</p>
+</div>
 
-    <div class="item">
-      <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca Butcher">
-      <div class="item-description">Faca Butcher - Ideal para cortar defesas inimigas.</div>
-      <div class="item-price">Preço: 4000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('Cristal podre e pura destruição. Uma lâmina para corromper o mundo.')">
+  <img src="rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Espada de Cristal Podre">
+  <p><strong>Espada de Cristal Podre</strong><br>Afeta inimigos com podridão e magia.<br><strong>Valor:</strong> 4.500 runas</p>
+</div>
 
-    <div class="item">
-      <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapier Antspur">
-      <div class="item-description">Rapier Antspur - Espada fina e letal para ataques rápidos.</div>
-      <div class="item-price">Preço: 3500 Ouro</div>
-    </div>
+<div class="item" onclick="speak('Garras de Besta... perfeitas para quem gosta de rasgar carne com estilo.')">
+  <img src="beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Garras de Besta">
+  <p><strong>Garras de Besta</strong><br>Golpes rápidos e ferozes como a própria fera.<br><strong>Valor:</strong> 3.800 runas</p>
+</div>
 
-    <div class="item">
-      <img src="rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Espada Cristalizada Podre">
-      <div class="item-description">Espada Cristalizada Podre - Danos venenosos em golpes certeiros.</div>
-      <div class="item-price">Preço: 6000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('A Grande Katana... simples, letal. Um corte basta.')">
+  <img src="great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Grande Katana">
+  <p><strong>Grande Katana</strong><br>Lâmina de samurai para cortes profundos.<br><strong>Valor:</strong> 5.500 runas</p>
+</div>
 
-    <div class="item">
-      <img src="beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Garras de Besta">
-      <div class="item-description">Garras de Besta - Ferramentas selvagens para ataques ágeis e letais.</div>
-      <div class="item-price">Preço: 7500 Ouro</div>
-    </div>
+<div class="item" onclick="speak('Perfume mortal. Uma fragrância que mata.')">
+  <img src="deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Perfume Venenoso">
+  <p><strong>Perfume Mortal</strong><br>Lança uma nuvem de veneno concentrado.<br><strong>Valor:</strong> 2.600 runas</p>
+</div>
 
-    <div class="item">
-      <img src="great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Grande Katana">
-      <div class="item-description">Grande Katana - Cortes poderosos com estilo oriental tradicional.</div>
-      <div class="item-price">Preço: 8000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('Espada colossal e brutal. Uma favorita entre caçadores de monstros.')">
+  <img src="watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp" alt="Espadão dos Vigilantes">
+  <p><strong>Espadão dos Vigilantes</strong><br>Destruição em forma de lâmina.<br><strong>Valor:</strong> 6.500 runas</p>
+</div>
 
-    <div class="item">
-      <img src="deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Perfume de Veneno">
-      <div class="item-description">Perfume de Veneno Mortal - Envenene seus inimigos com classe.</div>
-      <div class="item-price">Preço: 2000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('As Lâminas da Maldição… cada giro é uma dança da morte.')">
+  <img src="curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Lâminas Malditas">
+  <p><strong>Lâminas da Maldição</strong><br>Velocidade, precisão e caos.<br><strong>Valor:</strong> 3.900 runas</p>
+</div>
 
-    <div class="item">
-      <img src="watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp" alt="Espadão dos Cães de Guarda">
-      <div class="item-description">Espadão dos Cães de Guarda - Uma lâmina colossal para bravos.</div>
-      <div class="item-price">Preço: 9000 Ouro</div>
-    </div>
+<div class="item" onclick="speak('O Sino que invoca os mortos… alguns dizem que carrega ecos de almas.')">
+  <img src="wraith_calling_bell_elden_ring_wiki_guide_200px.png" alt="Sino dos Espectros">
+  <p><strong>Sino dos Espectros</strong><br>Conjura almas espectrais para atacar.<br><strong>Valor:</strong> 4.800 runas</p>
+</div>
+
+<div class="item" onclick="speak('Silenciosa, rápida, letal. Esta besta é sua melhor amiga na escuridão.')">
+  <img src="light_crossbow_weapon_elden_ring_wiki_guide_200px.webp" alt="Besta Leve">
+  <p><strong>Besta Leve</strong><br>Ideal para emboscadas e combate à distância.<br><strong>Valor:</strong> 2.000 runas</p>
+</div>
+
+<div class="item" onclick="speak('A Glintstone de Azur... um canal de puro poder arcano.')">
+  <img src="azurs-glintstone-staff-weapon-elden-ring-wiki-guide-200.webp" alt="Cajado de Azur">
+  <p><strong>Cajado de Azur</strong><br>Amplifica feitiços de alto custo.<br><strong>Valor:</strong> 6.200 runas</p>
+</div>
+
+<div class="item" onclick="speak('O bastão da Morte... um toque e tudo apodrece.')">
+  <img src="prince_of_deaths_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado da Morte">
+  <p><strong>Cajado do Príncipe da Morte</strong><br>Conjura feitiços mortais.<br><strong>Valor:</strong> 5.900 runas</p>
+</div>
+
+<div class="item" onclick="speak('Guilt will follow you... mesmo com este cajado nas mãos.')">
+  <img src="staff_of_the_guilty_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado da Culpa">
+  <p><strong>Cajado da Culpa</strong><br>Ideal para encantamentos sangrentos.<br><strong>Valor:</strong> 2.300 runas</p>
+</div>
+
+<div class="item" onclick="speak('Podridão cristalina... até a magia aqui está corrompida.')">
+  <img src="rotten_crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado Cristalino Podre">
+  <p><strong>Cajado de Cristal Podre</strong><br>Canaliza magia pútrida.<br><strong>Valor:</strong> 3.400 runas</p>
+</div>
+
+<div class="item" onclick="speak('Simples. Confiável. Letal.')">
+  <img src="crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado de Cristal">
+  <p><strong>Cajado de Cristal</strong><br>Usado por magos puros.<br><strong>Valor:</strong> 2.900 runas</p>
+</div>
+
+<div class="item" onclick="speak('Do coração de Gelmir, um canal direto ao caos.')">
+  <img src="gelmir_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado de Gelmir">
+  <p><strong>Cajado de Gelmir</strong><br>Fortalece feitiços de fogo.<br><strong>Valor:</strong> 3.300 runas</p>
+</div>
+
+<div class="item" onclick="speak('Criado pelos Albinaurics. Enganador, mas poderoso.')">
+  <img src="albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado Albinauric">
+  <p><strong>Cajado Albinauric</strong><br>Mistura sangue e magia.<br><strong>Valor:</strong> 3.000 runas</p>
+</div>
+
+<div class="item" onclick="speak('Real, antigo e amaldiçoado. O Cetro Cariano espera um novo rei.')">
+  <img src="carian_regal_scepter_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cetro Cariano Real">
+  <p><strong>Cetro Cariano Real</strong><br>Potencializa feitiços lunares.<br><strong>Valor:</strong> 6.000 runas</p>
+</div>
+
+<div class="item" onclick="speak('Sinta a perda… com cada feitiço lançado.')">
+  <img src="staff_of_loss_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado da Perda">
+  <p><strong>Cajado da Perda</strong><br>Amplifica feitiços invisíveis.<br><strong>Valor:</strong> 2.400 runas</p>
+</div>
+
+<div class="item" onclick="speak('Forjado com precisão. Cada lâmina invocada é uma promessa.')">
+  <img src="carian_glintblade_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado Lâmina Glint">
+  <p><strong>Cajado Lâmina Glint</strong><br>Foco em conjurações rápidas.<br><strong>Valor:</strong> 3.500 runas</p>
+</div>
+
+<div class="item" onclick="speak('Glintstone puro. Um cajado clássico para os que preferem o tradicional.')">
+  <img src="carian_glintstone_staff_glintstone_staffs-elden-ring-wiki-guide-200.webp" alt="Cajado Cariano Glintstone">
+  <p><strong>Cajado Cariano Glintstone</strong><br>Potente, simples e direto.<br><strong>Valor:</strong> 2.800 runas</p>
+</div>
+
+<div class="item" onclick="speak('O legado de Lusat... mas cuidado, há um preço a pagar.')">
+  <img src="lusats_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Cajado de Lusat">
+  <p><strong>Cajado de Lusat</strong><br>Poder bruto com alto custo de FP.<br><strong>Valor:</strong> 6.800 runas</p>
   </div>
-
-</body>
-</html>
