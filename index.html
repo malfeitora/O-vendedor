@@ -1,172 +1,162 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O VENDENDO</title>
-  <style>
-    body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Georgia', serif;
-      padding: 20px;
-      text-align: center;
-    }
-    .fala {
-      font-size: 1.4em;
-      margin-bottom: 20px;
-    }
-    .botoes button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .btn-novidade { background-color: #3a86ff; color: #fff; }
-    .btn-mercadorias { background-color: #ffbe0b; color: #000; }
-    .btn-sair { background-color: #ff006e; color: #fff; }
-    .mercadoria {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .mercadoria img {
-      width: 150px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #000;
-    }
-    .descricao {
-      margin-top: 10px;
-      font-size: 0.9em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O VENDEDOR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2f3f;
+            color: #fff;
+            text-align: center;
+        }
+        h1 {
+            color: #f8c90f;
+        }
+        #conversation {
+            margin: 20px;
+        }
+        .button {
+            background-color: #f8c90f;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #d7a900;
+        }
+        .items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .item {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            color: #fff;
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .item-description {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="fala" id="fala-vendedor">Então você gostaria de ver minhas mercadorias do dia?</div>
 
-  <div class="botoes">
-    <button class="btn-novidade" onclick="contarNovidade()">Me conte as novidades</button>
-    <button class="btn-mercadorias" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
-    <button class="btn-sair" onclick="sairDaLoja()">Não há nada que eu queira aqui</button>
-  </div>
+    <h1>O VENDEDOR</h1>
+    <div id="conversation">
+        <p id="vendor-text">Então você gostaria de ver minhas mercadorias do dia?</p>
+        <button class="button" onclick="showItems()">Me mostre as mercadorias</button>
+        <button class="button" onclick="showNews()">Me conte as novidades</button>
+        <button class="button" onclick="showExit()">Não há nada que eu queira aqui</button>
+    </div>
 
-  <div id="mercadorias" style="display:none;"></div>
+    <div id="items" class="items" style="display: none;">
+        <!-- Mercadorias -->
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp?raw=true" alt="Death Knight's Longhaft Axe">
+            <p class="item-description">Death Knight's Longhaft Axe</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp?raw=true" alt="Butchering Knife Greataxe">
+            <p class="item-description">Butchering Knife Greataxe</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp?raw=true" alt="Antspur Rapier">
+            <p class="item-description">Antspur Rapier</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/rotten_crystal_sword_elden_ring_wiki_guide_200px.webp?raw=true" alt="Rotten Crystal Sword">
+            <p class="item-description">Rotten Crystal Sword</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp?raw=true" alt="Beast Claws">
+            <p class="item-description">Beast Claws</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp?raw=true" alt="Great Katana">
+            <p class="item-description">Great Katana</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp?raw=true" alt="Deadly Poison Perfume">
+            <p class="item-description">Deadly Poison Perfume</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp?raw=true" alt="Watchdog's Greatsword">
+            <p class="item-description">Watchdog's Greatsword</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp?raw=true" alt="Curseblades Cirque">
+            <p class="item-description">Curseblades Cirque</p>
+        </div>
+        <div class="item">
+            <img src="https://github.com/seuusuario/seurepositorio/blob/main/imagens/wraith_calling_bell_elden_ring_wiki_guide_200px.png?raw=true" alt="Wraith Calling Bell">
+            <p class="item-description">Wraith Calling Bell</p>
+        </div>
+        <!-- Adicione mais itens aqui conforme necessário -->
+    </div>
 
-  <script>
-    const novidades = [
-      "Você sabia que é possível fabricar armas?",
-      "Há rumores sobre uma espada que canta ao cortar o ar.",
-      "Dizem que um dragão antigo ainda vive no sul...",
-      "A forja de gelo foi reativada por um andarilho misterioso.",
-      "Almas corrompidas vagam pela floresta proibida.",
-      "Existe uma foice que rouba memórias ao cortar.",
-      "Você já ouviu falar do selo de prata das profundezas?",
-      "Os mortos andam perto do antigo pântano.",
-      "A lua hoje parece mais próxima, não acha?",
-      "O aço negro voltou a ser forjado por alguém...",
-      "Tem uma caverna onde o tempo não passa.",
-      "Dizem que há um cajado que só responde a quem sofre.",
-      "Cuidado com o cavaleiro sem cabeça...",
-      "As runas estão se comportando de maneira estranha.",
-      "Uma tempestade de fogo está se aproximando do oeste.",
-      "O sino do abismo soou esta manhã.",
-      "Dizem que um dos deuses antigos despertou.",
-      "Um novo tipo de magia foi descoberto.",
-      "A névoa carmesim retorna em noites de eclipse.",
-      "Um andarilho derrotou um exército sozinho ontem.",
-      "Há uma besta feita apenas de sombras rondando à noite.",
-      "A água do lago prateado virou sangue.",
-      "Um velho alquimista enlouqueceu na torre dourada.",
-      "O desfiladeiro sussurra nomes de guerreiros caídos.",
-      "Existe um pacto proibido selado por um beijo de fogo.",
-      "Tem uma rosa que cura qualquer mal, mas só floresce na dor.",
-      "A areia da região norte canta ao ser pisada.",
-      "O tempo congelou dentro da cripta de vidro.",
-      "Ouvi dizer que a próxima lua trará mudanças drásticas.",
-      "Nada neste mundo é eterno... nem mesmo os deuses."
-    ];
+    <script>
+        let vendorText = document.getElementById('vendor-text');
+        let itemsDiv = document.getElementById('items');
+        
+        function showItems() {
+            vendorText.textContent = "Você é mesmo sem papo, em!";
+            itemsDiv.style.display = 'flex';
+        }
 
-    const mercadorias = [
-      "death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
-      "butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp",
-      "antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp",
-      "rotten_crystal_sword_elden_ring_wiki_guide_200px.webp",
-      "beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
-      "great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
-      "deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
-      "watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp",
-      "curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
-      "wraith_calling_bell_elden_ring_wiki_guide_200px.png",
-      "light_crossbow_weapon_elden_ring_wiki_guide_200px.webp",
-      "azurs-glintstone-staff-weapon-elden-ring-wiki-guide-200.webp",
-      "prince_of_deaths_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "staff_of_the_guilty_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "rotten_crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "gelmir_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "carian_regal_scepter_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "staff_of_loss_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "carian_glintblade_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "carian_glintstone_staff_glintstone_staffs-elden-ring-wiki-guide-200.webp",
-      "lusats_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "azurs_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "demi-human_queens_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "diggers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "astrologers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
-      "dryleaf_seal_glinstone_staff_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
-      "staff_of_the_great_beyond_glintstone_staff_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
-      "meteorite_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp"
-    ];
+        function showNews() {
+            const news = [
+                "Você sabia que é possível fabricar armas?",
+                "Tem alguns itens raros que só podem ser obtidos após batalhas difíceis.",
+                "O mercado de Elden Ring sempre tem coisas interessantes para quem tem coragem!",
+                "A magia em Elden Ring pode mudar o curso das batalhas!",
+                "Muitos itens poderosos podem ser encontrados nas masmorras mais perigosas.",
+                "Há rumores de que um novo artefato foi encontrado nas profundezas da zona das ruínas.",
+                "Com as poções certas, você pode aumentar suas forças por um período limitado.",
+                "Você já ouviu falar de um cajado que pode dobrar o poder das magias?",
+                "Cuidado com os itens amaldiçoados, eles podem trazer mais problemas do que benefícios.",
+                "Só os mais corajosos podem comprar itens que aumentam suas habilidades!",
+                "A forja secreta em Elden Ring pode transformar os itens mais comuns em relíquias poderosas.",
+                "Há uma lenda sobre um cajado perdido em Elden Ring que só pode ser encontrado durante um eclipse.",
+                "O segredo para se tornar mais forte está em dominar os itens certos!",
+                "Equipamentos encantados podem mudar o equilíbrio do jogo.",
+                "Algumas armas podem até ser usadas para invocar criaturas poderosas.",
+                "Sabe quais são os itens essenciais para quem busca poder? Eu posso te ajudar com isso!",
+                "Para alcançar a grandeza em Elden Ring, você deve sempre melhorar seu equipamento.",
+                "Você já se perguntou o que faz um cajado tão especial? Vamos conversar sobre isso.",
+                "Os itens que você escolhe influenciam diretamente sua jornada.",
+                "Bolsas mágicas podem ser muito úteis, sabia?",
+                "Existem itens que podem mudar a aparência das suas magias, mas são raros.",
+                "Talvez você precise de itens para aumentar a sua resistência contra certos inimigos.",
+                "A estratégia correta de equipar itens pode ser a chave para derrotar um chefe difícil.",
+                "Cada item tem sua história e propósito, se souber usá-los com sabedoria.",
+                "Sabia que alguns itens não podem ser usados sem uma alma poderosa por trás?",
+                "Há até itens que podem ajudá-lo a se infiltrar em áreas de difícil acesso.",
+                "Em Elden Ring, é melhor estar preparado com os itens certos para cada ocasião.",
+                "Muitos itens raros são apenas para quem já completou grandes feitos em sua jornada.",
+                "Tem algum item específico que você procura? Talvez eu tenha!"
+            ];
+            const randomIndex = Math.floor(Math.random() * news.length);
+            vendorText.textContent = news[randomIndex];
+        }
 
-    function contarNovidade() {
-      const aleatoria = novidades[Math.floor(Math.random() * novidades.length)];
-      document.getElementById('fala-vendedor').innerText = aleatoria;
-    }
+        function showExit() {
+            vendorText.textContent = "Então saia!";
+            setTimeout(() => {
+                window.close(); // Fecha a aba do navegador (se permitido)
+            }, 2000);
+        }
+    </script>
 
-    function mostrarMercadorias() {
-      document.getElementById('fala-vendedor').innerText = "Você é mesmo sem papo, hein? Muito bem, aqui está o que tenho...";
-      const container = document.getElementById('mercadorias');
-      container.innerHTML = "";
-      container.style.display = "block";
-
-      mercadorias.forEach(nomeArquivo => {
-        const div = document.createElement('div');
-        div.className = 'mercadoria';
-
-        const img = document.createElement('img');
-        img.src = `https://github.com/seuusuario/seurepositorio/blob/main/imagens/${nomeArquivo}?raw=true`;
-        img.alt = nomeArquivo;
-        img.onclick = () => {
-          const falas = [
-            "Um item raríssimo, digno dos grandes guerreiros!",
-            "Essa arma... forjada nas profundezas esquecidas."
-          ];
-          const aleatoria = falas[Math.floor(Math.random() * falas.length)];
-          alert(aleatoria);
-        };
-
-        const desc = document.createElement('div');
-        desc.className = 'descricao';
-        desc.innerText = `Nome: ${nomeArquivo.split('_')[0].replace('-', ' ')} | Valor: ??? Runas`;
-
-        div.appendChild(img);
-        div.appendChild(desc);
-        container.appendChild(div);
-      });
-    }
-
-    function sairDaLoja() {
-      const falas = ["Então saia!", "Volte quando tiver algo que preste!", "Não me faça perder tempo!"];
-      const aleatoria = falas[Math.floor(Math.random() * falas.length)];
-      alert(aleatoria);
-      window.close();
-    }
-  </script>
 </body>
 </html>
