@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O DUQUE</title>
+    <title>Mercadorias do Duque</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
             text-align: center;
@@ -24,15 +24,22 @@
         .item {
             background-color: white;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 8px;
+            text-align: center;
         }
-        img {
+        .item img {
             max-width: 100%;
             border-radius: 8px;
         }
         .item-description {
             margin-top: 10px;
+            font-size: 16px;
+        }
+        .item-price {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #4CAF50;
         }
         button {
             padding: 10px 20px;
@@ -41,93 +48,92 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #45a049;
         }
-        .dialog {
-            margin-top: 20px;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            display: none;
-        }
-        .dialog.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
-    <h1>O DUQUE</h1>
-    <p>Fale com o Duque para ver suas mercadorias.</p>
+    <h1>Mercadorias do Duque</h1>
+    <p>Confira as mercadorias raras que o Duque tem a oferecer!</p>
 
     <div class="container">
         <div class="item">
             <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
             <div class="item-description">
-                <p>Machado Longhaft - Um poderoso machado usado por guerreiros de elite.</p>
+                <p>Machado Longhaft - Um machado forjado para guerreiros de elite, com grande poder de destruição.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 5000 Ouro</p>
             </div>
         </div>
+
         <div class="item">
             <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca Butcher" />
             <div class="item-description">
-                <p>Faca Butcher - Ideal para cortar através de defesas com grande precisão.</p>
+                <p>Faca Butcher - Ideal para cortar defesas inimigas, rápida e afiada.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 4000 Ouro</p>
             </div>
         </div>
+
         <div class="item">
             <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapier Antspur" />
             <div class="item-description">
-                <p>Rapier Antspur - Uma espada fina para ataques rápidos e precisos.</p>
+                <p>Rapier Antspur - Espada fina e letal, perfeita para ataques rápidos e precisos.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 3500 Ouro</p>
             </div>
         </div>
-        <!-- Continue com os outros itens -->
+
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Espada Cristalizada Podre" />
+            <div class="item-description">
+                <p>Espada Cristalizada Podre - A lâmina carrega o poder do cristal corrompido, causando dano de veneno.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 6000 Ouro</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Garras de Besta" />
+            <div class="item-description">
+                <p>Garras de Besta - As garras afiadas de uma fera, ideais para caçadores de monstros.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 7500 Ouro</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Grande Katana" />
+            <div class="item-description">
+                <p>Grande Katana - Uma katana imensa, ideal para cortes poderosos.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 8000 Ouro</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Perfume de Veneno Mortal" />
+            <div class="item-description">
+                <p>Perfume de Veneno Mortal - Usado para envenenar inimigos de forma rápida e letal.</p>
+            </div>
+            <div class="item-price">
+                <p>Preço: 2000 Ouro</p>
+            </div>
+        </div>
+
+        <!-- Continue adicionando os itens conforme o padrão -->
     </div>
 
-    <div class="dialog" id="dukeDialog">
-        <p id="dukeText"></p>
-    </div>
+    <button>Comprar Agora</button>
 
-    <button onclick="mostrarDialog()">Fale com o Duque</button>
-
-    <script>
-        const falas = [
-            "Saudações, aventureiro. Olhe essas mercadorias raras que tenho!",
-            "Esta é uma lâmina forjada nas profundezas da terra.",
-            "Só os guerreiros mais poderosos podem usar um machado como este.",
-            "Se você busca agilidade, a faca butcher é sua melhor escolha.",
-            "A rapier antspur é afiada como uma adaga, ideal para ataques rápidos.",
-            "Esta espada cristalizada é imbatível contra qualquer inimigo.",
-            "A garra de besta é perfeita para os caçadores de monstros.",
-            "Você gostaria de algo mais afiado? Veja a grande katana.",
-            "Este perfume pode causar morte instantânea ao inimigo.",
-            "A espada dos cães vigilantes é uma verdadeira obra-prima.",
-            "O mal dessa lâmina não tem fim, tome cuidado ao usá-la.",
-            "A campainha do espectro invoca o mal, use com sabedoria.",
-            "A besta leve é ideal para emboscadas rápidas à distância.",
-            "A vara de Azur é poderosa para quem busca domínio da magia.",
-            "O cajado do príncipe da morte contém poderes de necromancia.",
-            "O cajado do culpado possui um poder sombriamente eficaz.",
-            "O cristal negro é uma relíquia da antiguidade, com grande poder.",
-            "O cajado de Gelmir é a chave para a magia do fogo.",
-            "O cajado Albinauric é perfeito para magos místicos e experimentados.",
-            "O cetro real cariano é digno de reis e rainhas.",
-            "O cajado da perda é misterioso e cheio de poder desconhecido.",
-            "Este cajado invoca lâminas de gelo, um poder devastador.",
-            "O cajado Lusat é a verdadeira joia da feitiçaria de alta classe."
-        ];
-
-        let falasIndex = 0;
-
-        function mostrarDialog() {
-            const dialog = document.getElementById('dukeDialog');
-            const dukeText = document.getElementById('dukeText');
-
-            dukeText.textContent = falas[falasIndex];
-            falasIndex = (falasIndex + 1) % falas.length; // Passa pelas falas em loop
-            dialog.classList.add('active');
-        }
-    </script>
 </body>
 </html>
