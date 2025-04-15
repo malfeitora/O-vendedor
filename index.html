@@ -1,94 +1,91 @@
 <!DOCTYPE html><html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O DUQUE</title>
   <style>
     body {
-      background-color: #1c1c1c;
-      color: #f5f5f5;
       font-family: 'Georgia', serif;
+      background-color: #1c1c1c;
+      color: #f0e6d2;
+      text-align: center;
       margin: 0;
       padding: 0;
     }
-    header {
-      background-color: #2b2b2b;
-      text-align: center;
+    h1 {
+      background-color: #3a1c0d;
+      color: #ffd700;
       padding: 20px;
-      font-size: 2em;
-      font-weight: bold;
-      border-bottom: 3px solid #444;
+      margin: 0;
     }
-    .container {
+    .mercadorias {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       padding: 20px;
     }
     .item {
-      background-color: #292929;
-      border: 1px solid #444;
-      border-radius: 10px;
+      background-color: #2b2b2b;
+      border: 2px solid #5a3e1b;
+      border-radius: 12px;
       margin: 10px;
-      padding: 15px;
-      width: 220px;
-      text-align: center;
-      transition: 0.3s;
+      padding: 10px;
+      width: 200px;
+      transition: transform 0.3s ease;
       cursor: pointer;
     }
     .item:hover {
       transform: scale(1.05);
-      background-color: #333;
+      background-color: #3a2e1e;
     }
     .item img {
-      width: 100px;
+      max-width: 100%;
       height: auto;
-      margin-bottom: 10px;
+      border-radius: 8px;
     }
-    .speech {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #111;
-      border: 2px solid #444;
-      border-radius: 10px;
-      padding: 15px 20px;
-      max-width: 90%;
-      text-align: center;
+    .fala-duque {
+      margin-top: 20px;
       font-style: italic;
-      display: none;
+      color: #d2b48c;
+      min-height: 60px;
     }
   </style>
 </head>
 <body>
-  <header>O DUQUE</header>
-  <div class="container">
-    <div class="item" onclick="speak('Ah... O Machado Longhaft. Perfeito para ceifar gigantes.')">
-      <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft">
-      <p><strong>Machado Longhaft</strong><br>Machado amaldiçoado de alcance estendido.<br><strong>Valor:</strong> 5.000 runas</p>
+  <h1>O DUQUE</h1>
+  <div class="fala-duque" id="falaDuque">Clique em uma mercadoria para ouvir o Duque...</div>
+  <div class="mercadorias" id="mercadorias">
+    <div class="item" onclick="mostrarFala(0)">
+      <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
+      <h3>Machado Longhaft</h3>
+      <p>Um machado brutal usado pelos cavaleiros da morte.</p>
+      <strong>Valor: 7000 Runas</strong>
     </div>
-    <div class="item" onclick="speak('Corte limpo ou brutalidade? O Cutelo de Carniceiro entrega os dois.')">
-      <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Cutelo de Carniceiro">
-      <p><strong>Cutelo de Carniceiro</strong><br>Pesado, cruel e sedento por sangue.<br><strong>Valor:</strong> 4.200 runas</p>
+    <div class="item" onclick="mostrarFala(1)">
+      <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca do Açougueiro" />
+      <h3>Faca do Açougueiro</h3>
+      <p>Um enorme cutelo de guerra que estraçalha inimigos com facilidade.</p>
+      <strong>Valor: 5500 Runas</strong>
     </div>
-    <div class="item" onclick="speak('A Rapieira Espinhosa. Cada perfuração carrega agonia e pestilência.')">
-      <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapieira Espinhosa">
-      <p><strong>Rapieira Espinhosa</strong><br>Inflige podridão escarlate com elegância.<br><strong>Valor:</strong> 4.000 runas</p>
+    <div class="item" onclick="mostrarFala(2)">
+      <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapieira de Espinhos" />
+      <h3>Rapieira de Espinhos</h3>
+      <p>Uma lâmina perfurante que aplica podridão escarlate.</p>
+      <strong>Valor: 4300 Runas</strong>
     </div>
-    <!-- Continue adicionando os outros itens da mesma forma -->
+    <!-- Adicione mais itens conforme necessário -->
   </div>
-  <div class="speech" id="speechBox"></div>
   <script>
-    function speak(text) {
-      const box = document.getElementById('speechBox');
-      box.innerText = text;
-      box.style.display = 'block';
-      clearTimeout(window.speechTimeout);
-      window.speechTimeout = setTimeout(() => {
-        box.style.display = 'none';
-      }, 4000);
-    }
+    const falas = [
+      "Ah, o Machado Longhaft... pesadelo de muitos, sonho de poucos.",
+      "A Faca do Açougueiro. Corta carne, osso e esperança.",
+      "Espinhos da rapieira... venenosa até a alma."
+      // Continue adicionando falas conforme os itens
+    ];function mostrarFala(index) {
+  const fala = falas[index] || "Mercadoria... rara e perigosa.";
+  document.getElementById('falaDuque').textContent = fala;
+}
+
   </script>
 </body>
 </html>
