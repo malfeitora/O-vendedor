@@ -49,6 +49,17 @@
             color: red;
         }
 
+        .timer {
+            font-size: 18px;
+            color: red;
+            margin-top: 20px;
+        }
+
+        #duque-message {
+            font-size: 22px;
+            color: green;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +68,11 @@
 
         <div id="shop-status">
             <p class="loading-message">O DUQUE está negociando seus itens, aguarde...</p>
+            <p id="timer" class="timer"></p>
         </div>
 
         <div id="shop-items" style="display:none;">
+            <p id="duque-message"></p>
             <div class="shop-item">
                 <img src="academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Academy Glintstone Staff">
                 <h3>Academy Glintstone Staff</h3>
@@ -89,21 +102,49 @@
     </div>
 
     <script>
-        // Função para simular a loja abrindo após um tempo aleatório
         function openShop() {
             const shopStatus = document.getElementById('shop-status');
             const shopItems = document.getElementById('shop-items');
+            const duqueMessage = document.getElementById('duque-message');
 
             // Esconde a mensagem de loading
             shopStatus.style.display = 'none';
 
             // Exibe os itens da loja
             shopItems.style.display = 'block';
+
+            // Exibe a mensagem do Duque
+            duqueMessage.textContent = "Bem vindo meu caro! Veio para barganhar ?";
         }
 
-        // Simula o atraso aleatório para a abertura da loja (entre 5 a 10 segundos)
-        const randomDelay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
-        setTimeout(openShop, randomDelay);
+        // Função para formatar o tempo restante para abrir a loja
+        function formatTime(timeInMs) {
+            const seconds = Math.floor((timeInMs / 1000) % 60);
+            const minutes = Math.floor((timeInMs / 1000 / 60) % 60);
+            return `${minutes}m ${seconds}s`;
+        }
+
+        // Função para simular o tempo até a abertura da loja
+        function startTimer() {
+            const randomDelay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000; // Aleatório entre 5s e 10s
+            const timerElement = document.getElementById('timer');
+
+            const endTime = Date.now() + randomDelay;
+
+            // Atualiza o timer a cada segundo
+            const interval = setInterval(() => {
+                const timeRemaining = endTime - Date.now();
+                if (timeRemaining <= 0) {
+                    clearInterval(interval);
+                    openShop(); // Abre a loja quando o tempo acabar
+                } else {
+                    timerElement.textContent = `A loja abrirá em: ${formatTime(timeRemaining)}`;
+                }
+            }, 1000);
+        }
+
+        // Inicia o timer assim que a página carrega
+        window.onload = startTimer;
     </script>
 </body>
 </html>
