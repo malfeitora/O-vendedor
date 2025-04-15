@@ -1,134 +1,128 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O DUQUE</title>
+    <title>VAGABOND - Loja do DUQUE</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #2b2b2b;
-            color: white;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            font-family: 'Georgia', serif;
             text-align: center;
+            padding: 50px;
         }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        .store {
+            margin-top: 30px;
         }
         .item {
-            position: relative;
-            width: 200px;
-            cursor: pointer;
-            border: 2px solid #fff;
-            padding: 10px;
-            border-radius: 10px;
+            display: inline-block;
+            margin: 10px;
         }
         .item img {
-            width: 100%;
+            width: 100px;
+            height: 100px;
+            border: 2px solid gold;
             border-radius: 10px;
         }
-        .message {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            display: none;
-            color: #f1f1f1;
-            max-width: 80%;
-            word-wrap: break-word;
+        .loading {
+            font-size: 1.5em;
+            color: goldenrod;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>O DUQUE - MERCADOR</h1>
-    <div class="container">
-
-        <div class="item" onclick="showMessage('death_knights_longhaft_axe')">
-            <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Death Knight's Longhaft Axe">
-            <h3>Death Knight's Longhaft Axe</h3>
-            <p>Preço: 10.000 almas</p>
-            <div class="message" id="death_knights_longhaft_axe_msg">"Ah, você escolheu a Death Knight's Longhaft Axe... Poderosa, afiada e com uma força inigualável, ideal para os guerreiros corajosos. Um verdadeiro tesouro das profundezas!"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('butchering_knife')">
-            <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Butchering Knife">
-            <h3>Butchering Knife</h3>
-            <p>Preço: 6.500 almas</p>
-            <div class="message" id="butchering_knife_msg">"Essa faca... Perfeita para cortar através da carne e ossos. Um item muito procurado por caçadores e carniceiros. Você tem coragem de usá-la?"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('antspur_rapier')">
-            <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
-            <h3>Antspur Rapier</h3>
-            <p>Preço: 4.500 almas</p>
-            <div class="message" id="antspur_rapier_msg">"Ah, a Antspur Rapier! Uma lâmina fina e mortal, excelente para perfurar qualquer defesa com uma precisão letal. Um item de grande agilidade!"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('rotten_crystal_sword')">
-            <img src="rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Sword">
-            <h3>Rotten Crystal Sword</h3>
-            <p>Preço: 12.000 almas</p>
-            <div class="message" id="rotten_crystal_sword_msg">"Este é um presente dos deuses das profundezas, uma espada feita de cristal podre... Poderia ser útil, mas deve-se ter cuidado, pois ela carrega uma maldição..."</div>
-        </div>
-
-        <div class="item" onclick="showMessage('beast_claw')">
-            <img src="beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Beast Claw">
-            <h3>Beast Claw</h3>
-            <p>Preço: 8.000 almas</p>
-            <div class="message" id="beast_claw_msg">"A Beast Claw é uma arma selvagem, feita para aqueles que enfrentam as feras mais terríveis. Sinta o poder bruto dessa relíquia, só os mais audazes a utilizam!"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('great_katana')">
-            <img src="great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Great Katana">
-            <h3>Great Katana</h3>
-            <p>Preço: 14.000 almas</p>
-            <div class="message" id="great_katana_msg">"Uma katana de grande porte, imponente e afiada. Para o samurai que deseja cortá-lo de forma decisiva, esta lâmina não decepcionará." </div>
-        </div>
-
-        <div class="item" onclick="showMessage('deadly_poison_perfume')">
-            <img src="deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Deadly Poison Perfume">
-            <h3>Deadly Poison Perfume</h3>
-            <p>Preço: 7.500 almas</p>
-            <div class="message" id="deadly_poison_perfume_msg">"Um perfume envenenado, para aqueles que preferem eliminar seus inimigos de maneira silenciosa e sutil. Cuidado com o uso excessivo!"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('watchdogs_greatsword')">
-            <img src="watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp" alt="Watchdog's Greatsword">
-            <h3>Watchdog's Greatsword</h3>
-            <p>Preço: 20.000 almas</p>
-            <div class="message" id="watchdogs_greatsword_msg">"A espada colossal dos cães de guarda. Um item imponente, ideal para quem busca dominância no campo de batalha. Um símbolo de poder!"</div>
-        </div>
-
-        <div class="item" onclick="showMessage('curseblades_cirque')">
-            <img src="curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Curseblade Cirque">
-            <h3>Curseblade Cirque</h3>
-            <p>Preço: 16.000 almas</p>
-            <div class="message" id="curseblades_cirque_msg">"A Curseblade Cirque... Uma lâmina amaldiçoada que pode drenar a vida dos seus inimigos. Um item que muitos evitam, mas que poucos rejeitam, pois seu poder é irresistível." </div>
-        </div>
-
-        <!-- Adicione mais itens com as falas do Duque aqui -->
-
-    </div>
+    <h1>LOJA DO DUQUE</h1>
+    <div class="store" id="store"></div>
+    <div class="loading" id="loading"></div>
 
     <script>
-        function showMessage(itemId) {
-            // Esconde todas as mensagens
-            const messages = document.querySelectorAll('.message');
-            messages.forEach(function(msg) {
-                msg.style.display = 'none';
-            });
+        const items = [
+            "academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp",
+            "astrologers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "azurs-glintstone-staff-weapon-elden-ring-wiki-guide-200.webp",
+            "azurs_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+            "butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp",
+            "carian_glintblade_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "carian_glintstone_staff_glintstone_staffs-elden-ring-wiki-guide-200.webp",
+            "carian_regal_scepter_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+            "curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+            "deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
+            "death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
+            "demi-human_queens_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp"
+        ];
 
-            // Exibe a mensagem do item clicado
-            const message = document.getElementById(itemId + '_msg');
-            if (message) {
-                message.style.display = 'block';
+        const frasesDuque = [
+            "O DUQUE está negociando seus itens, aguarde.",
+            "O DUQUE partiu rumo ao Reino da Névoa Eterna.",
+            "O DUQUE está indo para as Terras Proibidas.",
+            "O DUQUE foi visto nas margens da Árvore-Mãe.",
+            "O DUQUE está dormindo sob as cinzas de um antigo dragão."
+        ];
+
+        function escolherItensAleatorios(quantidade) {
+            let escolhidos = [];
+            let usados = new Set();
+            while (escolhidos.length < quantidade) {
+                let i = Math.floor(Math.random() * items.length);
+                if (!usados.has(i)) {
+                    escolhidos.push(items[i]);
+                    usados.add(i);
+                }
             }
+            return escolhidos;
+        }
+
+        function mostrarLoja() {
+            const storeDiv = document.getElementById("store");
+            const loadingDiv = document.getElementById("loading");
+            storeDiv.innerHTML = "";
+            loadingDiv.innerHTML = "";
+
+            const itensHoje = escolherItensAleatorios(5); // mostra 5 itens por dia
+            itensHoje.forEach(item => {
+                const itemDiv = document.createElement("div");
+                itemDiv.classList.add("item");
+                itemDiv.innerHTML = `<img src="imagens/${item}" alt="${item}">`;
+                storeDiv.appendChild(itemDiv);
+            });
+        }
+
+        function mostrarFechada() {
+            const loadingDiv = document.getElementById("loading");
+            const storeDiv = document.getElementById("store");
+            storeDiv.innerHTML = "";
+            const frase = frasesDuque[Math.floor(Math.random() * frasesDuque.length)];
+            loadingDiv.innerHTML = frase;
+        }
+
+        // Definir horário aleatório local para abrir (por exemplo, entre 8h e 22h)
+        const agora = new Date();
+        const horaAgora = agora.getHours();
+        const minutoAgora = agora.getMinutes();
+
+        // Salvar no localStorage o horário do dia para abrir a loja
+        let horarioAbertura = localStorage.getItem("duque_abre_em");
+        if (!horarioAbertura) {
+            const horaAleatoria = 8 + Math.floor(Math.random() * 14); // entre 8 e 21h
+            const minutoAleatorio = Math.floor(Math.random() * 60);
+            horarioAbertura = `${horaAleatoria}:${minutoAleatorio}`;
+            localStorage.setItem("duque_abre_em", horarioAbertura);
+        }
+
+        const [horaAbertura, minutoAbertura] = horarioAbertura.split(":").map(Number);
+        const minutosAbertura = horaAbertura * 60 + minutoAbertura;
+        const minutosAgora = horaAgora * 60 + minutoAgora;
+
+        // A loja abre por 23 minutos
+        if (minutosAgora >= minutosAbertura && minutosAgora <= minutosAbertura + 23) {
+            mostrarLoja();
+        } else {
+            mostrarFechada();
         }
     </script>
 </body>
