@@ -1,239 +1,135 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O DUQUE</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #1c1c1c;
-      color: #f0e6d2;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      background-color: #3a1c0d;
-      color: #ffd700;
-      padding: 20px;
-      margin: 0;
-    }
-    .mercadorias {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-    .item {
-      background-color: #2b2b2b;
-      border: 2px solid #5a3e1b;
-      border-radius: 12px;
-      margin: 10px;
-      padding: 10px;
-      width: 200px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .item:hover {
-      transform: scale(1.05);
-      background-color: #3a2e1e;
-    }
-    .item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .fala-duque {
-      margin-top: 20px;
-      font-style: italic;
-      color: #d2b48c;
-      min-height: 60px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O DUQUE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2b2b2b;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .item {
+            position: relative;
+            width: 200px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .message {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            color: #f1f1f1;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
-  <h1>O DUQUE</h1>
-  <div class="fala-duque" id="falaDuque">Clique em uma mercadoria para ouvir o Duque...</div>
-  <div class="mercadorias" id="mercadorias">
-    <div class="item" onclick="mostrarFala(0)">
-      <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
-      <h3>Machado Longhaft</h3>
-      <p>Um machado brutal usado pelos cavaleiros da morte.</p>
-      <strong>Valor: 7000 Runas</strong>
-    </div>
-    <div class="item" onclick="mostrarFala(1)">
-      <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca do Açougueiro" />
-      <h3>Faca do Açougueiro</h3>
-      <p>Um enorme cutelo de guerra que estraçalha inimigos com facilidade.</p>
-      <strong>Valor: 5500 Runas</strong>
-    </div>
-    <div class="item" onclick="mostrarFala(2)">
-      <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapieira de Espinhos" />
-      <h3>Rapieira de Espinhos</h3>
-      <p>Uma lâmina perfurante que aplica podridão escarlate.</p>
-      <strong>Valor: 4300 Runas</strong>
-    </div>
-    <!-- Adicione mais itens conforme necessário -->
-  </div>
-  <script>
-    const falas = [
-      "Ah, o Machado Longhaft... pesadelo de muitos, sonho de poucos.",
-      "A Faca do Açougueiro. Corta carne, osso e esperança.",
-      "Espinhos da rapieira... venenosa até a alma."
-      // Continue adicionando falas conforme os itens
-    ];function mostrarFala(index) {
-  const fala = falas[index] || "Mercadoria... rara e perigosa.";
-  document.getElementById('falaDuque').textContent = fala;
-}
+    <h1>O DUQUE - MERCADOR</h1>
+    <div class="container">
 
-  </script>
+        <div class="item" onclick="showMessage('death_knights_longhaft_axe')">
+            <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Death Knight's Longhaft Axe">
+            <h3>Death Knight's Longhaft Axe</h3>
+            <p>Preço: 10.000 almas</p>
+            <div class="message" id="death_knights_longhaft_axe_msg">"Ah, você escolheu a Death Knight's Longhaft Axe... Poderosa, afiada e com uma força inigualável, ideal para os guerreiros corajosos. Um verdadeiro tesouro das profundezas!"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('butchering_knife')">
+            <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Butchering Knife">
+            <h3>Butchering Knife</h3>
+            <p>Preço: 6.500 almas</p>
+            <div class="message" id="butchering_knife_msg">"Essa faca... Perfeita para cortar através da carne e ossos. Um item muito procurado por caçadores e carniceiros. Você tem coragem de usá-la?"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('antspur_rapier')">
+            <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
+            <h3>Antspur Rapier</h3>
+            <p>Preço: 4.500 almas</p>
+            <div class="message" id="antspur_rapier_msg">"Ah, a Antspur Rapier! Uma lâmina fina e mortal, excelente para perfurar qualquer defesa com uma precisão letal. Um item de grande agilidade!"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('rotten_crystal_sword')">
+            <img src="rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Sword">
+            <h3>Rotten Crystal Sword</h3>
+            <p>Preço: 12.000 almas</p>
+            <div class="message" id="rotten_crystal_sword_msg">"Este é um presente dos deuses das profundezas, uma espada feita de cristal podre... Poderia ser útil, mas deve-se ter cuidado, pois ela carrega uma maldição..."</div>
+        </div>
+
+        <div class="item" onclick="showMessage('beast_claw')">
+            <img src="beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Beast Claw">
+            <h3>Beast Claw</h3>
+            <p>Preço: 8.000 almas</p>
+            <div class="message" id="beast_claw_msg">"A Beast Claw é uma arma selvagem, feita para aqueles que enfrentam as feras mais terríveis. Sinta o poder bruto dessa relíquia, só os mais audazes a utilizam!"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('great_katana')">
+            <img src="great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Great Katana">
+            <h3>Great Katana</h3>
+            <p>Preço: 14.000 almas</p>
+            <div class="message" id="great_katana_msg">"Uma katana de grande porte, imponente e afiada. Para o samurai que deseja cortá-lo de forma decisiva, esta lâmina não decepcionará." </div>
+        </div>
+
+        <div class="item" onclick="showMessage('deadly_poison_perfume')">
+            <img src="deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Deadly Poison Perfume">
+            <h3>Deadly Poison Perfume</h3>
+            <p>Preço: 7.500 almas</p>
+            <div class="message" id="deadly_poison_perfume_msg">"Um perfume envenenado, para aqueles que preferem eliminar seus inimigos de maneira silenciosa e sutil. Cuidado com o uso excessivo!"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('watchdogs_greatsword')">
+            <img src="watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp" alt="Watchdog's Greatsword">
+            <h3>Watchdog's Greatsword</h3>
+            <p>Preço: 20.000 almas</p>
+            <div class="message" id="watchdogs_greatsword_msg">"A espada colossal dos cães de guarda. Um item imponente, ideal para quem busca dominância no campo de batalha. Um símbolo de poder!"</div>
+        </div>
+
+        <div class="item" onclick="showMessage('curseblades_cirque')">
+            <img src="curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Curseblade Cirque">
+            <h3>Curseblade Cirque</h3>
+            <p>Preço: 16.000 almas</p>
+            <div class="message" id="curseblades_cirque_msg">"A Curseblade Cirque... Uma lâmina amaldiçoada que pode drenar a vida dos seus inimigos. Um item que muitos evitam, mas que poucos rejeitam, pois seu poder é irresistível." </div>
+        </div>
+
+        <!-- Adicione mais itens com as falas do Duque aqui -->
+
+    </div>
+
+    <script>
+        function showMessage(itemId) {
+            // Esconde todas as mensagens
+            const messages = document.querySelectorAll('.message');
+            messages.forEach(function(msg) {
+                msg.style.display = 'none';
+            });
+
+            // Exibe a mensagem do item clicado
+            const message = document.getElementById(itemId + '_msg');
+            if (message) {
+                message.style.display = 'block';
+            }
+        }
+    </script>
 </body>
-<div class="item" onclick="showMessage('death_knights_longhaft_axe')">
-    <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Death Knight's Longhaft Axe">
-    <h3>Death Knight's Longhaft Axe</h3>
-    <p>Preço: 10.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('butchering_knife')">
-    <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Butchering Knife">
-    <h3>Butchering Knife</h3>
-    <p>Preço: 6.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('antspur_rapier')">
-    <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
-    <h3>Antspur Rapier</h3>
-    <p>Preço: 4.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('rotten_crystal_sword')">
-    <img src="rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Sword">
-    <h3>Rotten Crystal Sword</h3>
-    <p>Preço: 12.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('beast_claw')">
-    <img src="beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Beast Claw">
-    <h3>Beast Claw</h3>
-    <p>Preço: 8.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('great_katana')">
-    <img src="great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Great Katana">
-    <h3>Great Katana</h3>
-    <p>Preço: 14.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('deadly_poison_perfume')">
-    <img src="deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Deadly Poison Perfume">
-    <h3>Deadly Poison Perfume</h3>
-    <p>Preço: 7.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('watchdogs_greatsword')">
-    <img src="watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp" alt="Watchdog's Greatsword">
-    <h3>Watchdog's Greatsword</h3>
-    <p>Preço: 20.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('curseblades_cirque')">
-    <img src="curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Curseblade Cirque">
-    <h3>Curseblade Cirque</h3>
-    <p>Preço: 16.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('wraith_calling_bell')">
-    <img src="wraith_calling_bell_elden_ring_wiki_guide_200px.png" alt="Wraith Calling Bell">
-    <h3>Wraith Calling Bell</h3>
-    <p>Preço: 5.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('light_crossbow')">
-    <img src="light_crossbow_weapon_elden_ring_wiki_guide_200px.webp" alt="Light Crossbow">
-    <h3>Light Crossbow</h3>
-    <p>Preço: 3.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('azurs_glintstone_staff')">
-    <img src="azurs-glintstone-staff-weapon-elden-ring-wiki-guide-200.webp" alt="Azur's Glintstone Staff">
-    <h3>Azur's Glintstone Staff</h3>
-    <p>Preço: 11.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('prince_of_deaths_staff')">
-    <img src="prince_of_deaths_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Prince of Death's Staff">
-    <h3>Prince of Death's Staff</h3>
-    <p>Preço: 13.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('staff_of_the_guilty')">
-    <img src="staff_of_the_guilty_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Staff of the Guilty">
-    <h3>Staff of the Guilty</h3>
-    <p>Preço: 9.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('rotten_crystal_staff')">
-    <img src="rotten_crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Staff">
-    <h3>Rotten Crystal Staff</h3>
-    <p>Preço: 15.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('crystal_staff')">
-    <img src="crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Crystal Staff">
-    <h3>Crystal Staff</h3>
-    <p>Preço: 10.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('gelmir_glintstone_staff')">
-    <img src="gelmir_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Gelmir Glintstone Staff">
-    <h3>Gelmir Glintstone Staff</h3>
-    <p>Preço: 18.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('albinauric_staff')">
-    <img src="albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Albinauric Staff">
-    <h3>Albinauric Staff</h3>
-    <p>Preço: 14.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('carian_regal_scepter')">
-    <img src="carian_regal_scepter_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Carian Regal Scepter">
-    <h3>Carian Regal Scepter</h3>
-    <p>Preço: 22.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('staff_of_loss')">
-    <img src="staff_of_loss_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Staff of Loss">
-    <h3>Staff of Loss</h3>
-    <p>Preço: 19.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('carian_glintblade_staff')">
-    <img src="carian_glintblade_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Carian Glintblade Staff">
-    <h3>Carian Glintblade Staff</h3>
-    <p>Preço: 17.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('carian_glintstone_staff')">
-    <img src="carian_glintstone_staff_glintstone_staffs-elden-ring-wiki-guide-200.webp" alt="Carian Glintstone Staff">
-    <h3>Carian Glintstone Staff</h3>
-    <p>Preço: 16.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('lusats_glintstone_staff')">
-    <img src="lusats_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Lusat's Glintstone Staff">
-    <h3>Lusat's Glintstone Staff</h3>
-    <p>Preço: 18.500 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('azurs_glintstone_staff')">
-    <img src="azurs_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Azur's Glintstone Staff">
-    <h3>Azur's Glintstone Staff</h3>
-    <p>Preço: 20.000 almas</p>
-</div>
-
-<div class="item" onclick="showMessage('demi_human_queens_staff')">
-    <img src="demi-human_queens_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Demi-Human Queen's Staff">
-    <h3>Demi-Human Queen's Staff</h3>
-    <p>Preço: 15.500 almas</p>
-</div>
+</html>
