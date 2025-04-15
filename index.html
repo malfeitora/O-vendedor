@@ -1,136 +1,31 @@
-<!DOCTYPE html><html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O VENDENDO</title>
-  <style>
-    body {
-      background-color: #1a1a1a;
-      color: #f0e6d2;
-      font-family: 'Georgia', serif;
-      text-align: center;
-      padding: 20px;
-    }
-    .button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 18px;
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      color: white;
-    }
-    .novidades { background-color: #6c3483; }
-    .mercadorias { background-color: #117a65; }
-    .sair { background-color: #922b21; }
-    .mercadoria-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .item {
-      background-color: #2c2c2c;
-      border: 1px solid #555;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 200px;
-      transition: transform 0.2s;
-    }
-    .item:hover {
-      transform: scale(1.05);
-    }
-    .item img {
-      width: 100%;
-      border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
-  <h1 id="vendedor">Então você gostaria de ver minhas mercadorias do dia?</h1><button class="button novidades" onclick="contarNovidade()">Me conte as novidades</button> <button class="button mercadorias" onclick="mostrarMercadorias()">Me mostre as mercadorias</button> <button class="button sair" onclick="expulsarJogador()">Não há nada que eu queira aqui</button>
-
-  <div id="mercadorias" class="mercadoria-container" style="display: none;">
-    <div class="item" onclick="falarItem('Essa é uma relíquia perdida do antigo mundo.', 'Poucos já viram uma dessas intacta.')">
-      <img src="readme.md/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft dos Cavaleiros da Morte">
-      <p><strong>Machado Longhaft dos Cavaleiros da Morte</strong></p>
-      <p>Um machado de guerra antigo que carrega o espírito dos guerreiros mortos. Valor: 4500 Runas. Força +20, Sangramento +10</p>
-    </div><div class="item" onclick="falarItem('Feita para esquartejar, não para ameaçar.', 'A lâmina que cantou em cem batalhas.')">
-  <img src="readme.md/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca de Açougueiro">
-  <p><strong>Faca de Açougueiro</strong></p>
-  <p>Uma greataxe cruel, usada por antigos carniceiros. Valor: 3600 Runas. Força +18, Vida por golpe +5%</p>
+<div class="mercadoria">
+  <img src="imagens/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
+  <p>Death Knight's Longhaft Axe: Uma arma poderosa usada pelos cavaleiros da morte. Ela possui um bom equilíbrio entre dano e velocidade de ataque. Requer Força e Destreza para ser usada com eficiência.</p>
+  <p><strong>Atributos necessários:</strong> Força 20, Destreza 15</p>
 </div>
 
-<div class="item" onclick="falarItem('A ponta ainda carrega veneno seco.', 'Foi usada contra nobres em tempos sombrios.')">
-  <img src="readme.md/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
-  <p><strong>Espada Antspur</strong></p>
-  <p>Uma espada perfurante que aplica podridão escarlate. Valor: 3000 Runas. Destreza +15, Podridão +20</p>
+<div class="mercadoria">
+  <img src="imagens/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Butchering Knife" />
+  <p>Butchering Knife: Uma lâmina afiada usada para cortar através da carne e ossos com facilidade. Ideal para caçadores. Aumenta o dano contra inimigos grandes.</p>
+  <p><strong>Atributos necessários:</strong> Força 18, Destreza 12</p>
 </div>
 
-<div class="item" onclick="falarItem('Fragmentos de cristal apodrecido... letal e belo.', 'Criada nas profundezas pútridas.')">
-  <img src="readme.md/rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Espada de Cristal Podre">
-  <p><strong>Espada de Cristal Podre</strong></p>
-  <p>Uma lâmina cristalina que corrompe os corpos dos atingidos. Valor: 3800 Runas. Inteligência +10, Podridão +25</p>
+<div class="mercadoria">
+  <img src="imagens/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier" />
+  <p>Antspur Rapier: Uma espada de estocada de lâmina fina, com alta precisão e velocidade. Ideal para ataques rápidos e certeiros em pontos vitais.</p>
+  <p><strong>Atributos necessários:</strong> Destreza 25</p>
 </div>
 
-<div class="item" onclick="falarItem('Essas garras já dilaceraram feras maiores que você.', 'Não tente domá-las... elas te devorariam.')">
-  <img src="readme.md/beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Garras da Fera">
-  <p><strong>Garras da Fera</strong></p>
-  <p>Armas de combate selvagem, para quem luta como uma besta. Valor: 2500 Runas. Agilidade +20, Dano crítico +15%</p>
+<div class="mercadoria">
+  <img src="imagens/rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Sword" />
+  <p>Rotten Crystal Sword: Uma espada de cristal danificada, mas com grande poder mágico. Suas lâminas podem corroer a resistência do inimigo.</p>
+  <p><strong>Atributos necessários:</strong> Força 16, Inteligência 18</p>
 </div>
 
-  </div>  <script>
-    const novidades = [
-      "Você sabia que é possível fabricar armas?",
-      "Dizem que ao norte existe um dragão que cospe escuridão...",
-      "Um viajante contou sobre uma cidade de cristal no céu.",
-      "As fogueiras estão começando a desaparecer, algo vem aí.",
-      "Você já ouviu falar dos Filhos do Vazio? Melhor não procurar...",
-      "Algumas ruínas podem sussurrar, mas não escute!",
-      "Se olhar para o leste ao entardecer, verá algo... estranho.",
-      "Dizem que um velho ferreiro ainda vive nas chamas eternas.",
-      "As estrelas estão mudando de posição. Algo foi profetizado.",
-      "Um servo do Abismo foi visto andando pela floresta.",
-      "Uma nova ordem está surgindo... e eles não gostam de forasteiros.",
-      "O veneno das terras pútridas agora afeta até as árvores.",
-      "Não confie em vendedores sorridentes.",
-      "Armas amaldiçoadas têm sentimentos, sabia?",
-      "Alguém reviveu o culto da Morte Serena.",
-      "Muitas almas foram consumidas na Torre do Oeste.",
-      "O Mar de Cinzas voltou a ferver.",
-      "Um deus antigo despertou sob a montanha.",
-      "A noite está mais longa, não é sua imaginação.",
-      "Um eclipse está por vir, dizem os videntes.",
-      "As flores da ruína estão desabrochando outra vez.",
-      "O sangue antigo está sendo recolhido por um clã misterioso.",
-      "Ratos falam, se você escutar direito.",
-      "Almas corrompidas começaram a vagar mesmo de dia.",
-      "Existe uma fornalha onde as armas choram.",
-      "Vi um guerreiro sem cabeça derrotar cem soldados.",
-      "O céu gritou ontem à noite. Alguém ouviu?",
-      "Nem todas as fogueiras são seguras.",
-      "Rios secos estão voltando a correr... mas com sangue.",
-      "Há um ovo gigante nas cavernas do sul. Está tremendo..."
-    ];
+<div class="mercadoria">
+  <img src="imagens/beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Beast Claw" />
+  <p>Beast Claw: Garras bestiais que canalizam poder animal, permitindo ao usuário realizar ataques devastadores com agilidade.</p>
+  <p><strong>Atributos necessários:</strong> Força 18, Destreza 14</p>
+</div>
 
-    function contarNovidade() {
-      const fala = novidades[Math.floor(Math.random() * novidades.length)];
-      document.getElementById('vendedor').innerText = fala;
-    }
-
-    function mostrarMercadorias() {
-      document.getElementById('vendedor').innerText = "Você é mesmo sem papo, hein? Veja então minhas relíquias...";
-      document.getElementById('mercadorias').style.display = 'flex';
-    }
-
-    function expulsarJogador() {
-      alert("Então saia!");
-      window.close();
-    }
-
-    function falarItem(fala1, fala2) {
-      const falas = [fala1, fala2];
-      alert(falas[Math.floor(Math.random() * falas.length)]);
-    }
-  </script></body>
-</html>
+<!-- Continue adicionando os outros itens conforme o padrão abaixo -->
