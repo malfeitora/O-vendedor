@@ -44,18 +44,26 @@
     .botoes {
       margin-top: 30px;
     }
+    .botoes h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #ffd700;
+    }
     .botao {
       margin: 10px;
-      padding: 10px 20px;
+      padding: 12px 22px;
       font-size: 1rem;
-      background-color: #444;
       color: white;
       border: none;
-      cursor: pointer;
       border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+    .botao:nth-child(2) { background-color: #4CAF50; } /* verde */
+    .botao:nth-child(3) { background-color: #2196F3; } /* azul */
+    .botao:nth-child(4) { background-color: #f44336; } /* vermelho */
     .botao:hover {
-      background-color: #666;
+      opacity: 0.85;
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -66,17 +74,18 @@
 <body>
   <h1>O VENDENDO</h1>
   <div class="vendedor" id="falaVendedor"></div>
-  
+
   <!-- Botões de interação -->
   <div class="botoes">
+    <h2>Você diz:</h2>
     <button class="botao" onclick="mostrarNovidade()">Me conte as novidades</button>
     <button class="botao" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
     <button class="botao" onclick="sairLoja()">Não há nada que eu queira aqui</button>
   </div>
-  
+
   <!-- Resposta do vendedor -->
   <div class="vendedor" id="respostaVendedor"></div>
-  
+
   <!-- Mercadorias -->
   <div class="mercadorias" id="mercadorias">
     <div class="mercadoria">
