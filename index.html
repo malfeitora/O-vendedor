@@ -15,6 +15,23 @@
       margin-top: 20vh;
       animation: fadeIn 2s ease-in-out;
     }
+    .mercadorias {
+      display: none;
+      margin-top: 20px;
+    }
+    .botao {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .botao:hover {
+      background-color: #666;
+    }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -23,7 +40,14 @@
 </head>
 <body>
   <h1>O VENDENDO</h1>
-  <div class="vendedor" id="falaVendedor"></div>  <script>
+  <div class="vendedor" id="falaVendedor"></div>
+  <button class="botao" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
+  <div class="vendedor" id="respostaVendedor"></div>
+  <div class="mercadorias" id="mercadorias">
+    <p>- Poção misteriosa</p>
+    <p>- Espada enferrujada</p>
+    <p>- Mapa antigo</p>
+  </div>  <script>
     const falas = [
       "Então você gostaria de ver minhas mercadorias do dia?",
       "Ah, um novo cliente... veja o que tenho para hoje.",
@@ -38,5 +62,10 @@
     }
 
     document.getElementById("falaVendedor").textContent = falaAleatoria();
+
+    function mostrarMercadorias() {
+      document.getElementById("respostaVendedor").textContent = "Você é mesmo sem papo, hein?";
+      document.getElementById("mercadorias").style.display = "block";
+    }
   </script></body>
 </html>
