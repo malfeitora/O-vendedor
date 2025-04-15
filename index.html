@@ -1,187 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O VENDENDO</title>
   <style>
     body {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-      font-family: 'Courier New', Courier, monospace;
-      padding: 40px;
+      background-color: #111;
+      color: #eee;
+      font-family: 'Georgia', serif;
+      padding: 20px;
       text-align: center;
     }
-    h1 {
-      margin-top: 20px;
+    .fala {
+      font-size: 1.4em;
+      margin-bottom: 20px;
     }
-    .vendedor {
-      font-size: 1.5rem;
-      margin-top: 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .mercadorias {
-      display: none;
-      margin-top: 20px;
-    }
-    .mercadoria {
-      display: inline-block;
+    .botoes button {
       margin: 10px;
-    }
-    .mercadoria img {
-      width: 120px;
-      height: 120px;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: transform 0.2s;
-    }
-    .mercadoria img:hover {
-      transform: scale(1.05);
-    }
-    .descricao {
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
-    .botoes {
-      margin-top: 30px;
-    }
-    .botoes h2 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #ffd700;
-    }
-    .botao {
-      margin: 10px;
-      padding: 12px 22px;
-      font-size: 1rem;
-      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-    .botao:nth-child(2) { background-color: #4CAF50; } /* verde */
-    .botao:nth-child(3) { background-color: #2196F3; } /* azul */
-    .botao:nth-child(4) { background-color: #f44336; } /* vermelho */
-    .botao:hover {
-      opacity: 0.85;
+    .btn-novidade { background-color: #3a86ff; color: #fff; }
+    .btn-mercadorias { background-color: #ffbe0b; color: #000; }
+    .btn-sair { background-color: #ff006e; color: #fff; }
+    .mercadoria {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .mercadoria img {
+      width: 150px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #000;
+    }
+    .descricao {
+      margin-top: 10px;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <h1>O VENDENDO</h1>
-  <div class="vendedor" id="falaVendedor"></div>
+  <div class="fala" id="fala-vendedor">Então você gostaria de ver minhas mercadorias do dia?</div>
 
-  <!-- Botões de interação -->
   <div class="botoes">
-    <h2>Você diz:</h2>
-    <button class="botao" onclick="mostrarNovidade()">Me conte as novidades</button>
-    <button class="botao" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
-    <button class="botao" onclick="sairLoja()">Não há nada que eu queira aqui</button>
+    <button class="btn-novidade" onclick="contarNovidade()">Me conte as novidades</button>
+    <button class="btn-mercadorias" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
+    <button class="btn-sair" onclick="sairDaLoja()">Não há nada que eu queira aqui</button>
   </div>
 
-  <!-- Resposta do vendedor -->
-  <div class="vendedor" id="respostaVendedor"></div>
-
-  <!-- Mercadorias -->
-  <div class="mercadorias" id="mercadorias">
-    <div class="mercadoria">
-      <img src="https://via.placeholder.com/120" onclick="descreverItem('Espada Ancestral')">
-      <div class="descricao">
-        <strong>Espada Ancestral</strong><br>
-        Dano: 120 | Força necessária: 18<br>
-        Valor: 1200 Runas
-      </div>
-    </div>
-    <div class="mercadoria">
-      <img src="https://via.placeholder.com/120" onclick="descreverItem('Elixir da Lua')">
-      <div class="descricao">
-        <strong>Elixir da Lua</strong><br>
-        Recupera 50% do HP | INT necessária: 10<br>
-        Valor: 600 Runas
-      </div>
-    </div>
-  </div>
+  <div id="mercadorias" style="display:none;"></div>
 
   <script>
-    const falasIniciais = [
-      "Então você gostaria de ver minhas mercadorias do dia?",
-      "Ah, um novo cliente... veja o que tenho para hoje.",
-      "Aproveite enquanto durarem os estoques!",
-      "Nada melhor que uma boa troca, não é mesmo?",
-      "Vamos ver se algo te agrada hoje."
-    ];
-
     const novidades = [
       "Você sabia que é possível fabricar armas?",
-      "Boatos dizem que uma besta lendária ronda o pântano...",
-      "Tem gente por aí fundindo almas com aço.",
-      "Se for até as ruínas de Nyros, leve tochas. Muitas tochas.",
-      "Uma guilda secreta foi vista ao sul da torre esquecida.",
-      "Estão vendendo pedras encantadas por migalhas na cidade!",
-      "Dizem que um novo dragão foi visto ao norte.",
-      "Um talismã antigo foi achado em uma cripta lacrada.",
-      "As sombras da floresta estão ficando mais densas...",
-      "Um viajante misterioso deixou uma espada cravada na pedra.",
-      "Dizem que um pacto sombrio está se formando nas profundezas.",
-      "A cidade subterrânea está acordando de novo...",
-      "Alguém domou um lobo com olhos de rubi.",
-      "O tempo está instável... algo grande está por vir.",
-      "O mercado de runas está uma loucura!",
-      "Magos estão sumindo próximo ao cemitério amaldiçoado.",
-      "Estão forjando armaduras com escamas de serpente.",
-      "Reinos estão entrando em guerra silenciosa.",
-      "Um cometa foi visto no céu. Isso nunca é bom sinal.",
-      "Portais antigos estão se reabrindo...",
-      "A floresta canta durante a noite. E não é música boa.",
-      "Velhos deuses sussurram nas ruínas perdidas.",
-      "Runas negras apareceram nas muralhas do castelo.",
-      "Espelhos estão mostrando reflexos que não são seus.",
-      "A lua ficou vermelha ontem. Ninguém dormiu.",
-      "Mensagens apareceram em línguas esquecidas.",
-      "Chamas azuis foram vistas no desfiladeiro.",
-      "Mercadores estão fugindo da capital.",
-      "Algo se esconde nas neblinas eternas...",
-      "A Ordem dos Corvos silenciou..."
+      "Há rumores sobre uma espada que canta ao cortar o ar.",
+      "Dizem que um dragão antigo ainda vive no sul...",
+      "A forja de gelo foi reativada por um andarilho misterioso.",
+      "Almas corrompidas vagam pela floresta proibida.",
+      "Existe uma foice que rouba memórias ao cortar.",
+      "Você já ouviu falar do selo de prata das profundezas?",
+      "Os mortos andam perto do antigo pântano.",
+      "A lua hoje parece mais próxima, não acha?",
+      "O aço negro voltou a ser forjado por alguém...",
+      "Tem uma caverna onde o tempo não passa.",
+      "Dizem que há um cajado que só responde a quem sofre.",
+      "Cuidado com o cavaleiro sem cabeça...",
+      "As runas estão se comportando de maneira estranha.",
+      "Uma tempestade de fogo está se aproximando do oeste.",
+      "O sino do abismo soou esta manhã.",
+      "Dizem que um dos deuses antigos despertou.",
+      "Um novo tipo de magia foi descoberto.",
+      "A névoa carmesim retorna em noites de eclipse.",
+      "Um andarilho derrotou um exército sozinho ontem.",
+      "Há uma besta feita apenas de sombras rondando à noite.",
+      "A água do lago prateado virou sangue.",
+      "Um velho alquimista enlouqueceu na torre dourada.",
+      "O desfiladeiro sussurra nomes de guerreiros caídos.",
+      "Existe um pacto proibido selado por um beijo de fogo.",
+      "Tem uma rosa que cura qualquer mal, mas só floresce na dor.",
+      "A areia da região norte canta ao ser pisada.",
+      "O tempo congelou dentro da cripta de vidro.",
+      "Ouvi dizer que a próxima lua trará mudanças drásticas.",
+      "Nada neste mundo é eterno... nem mesmo os deuses."
     ];
 
-    const elogiosItens = {
-      "Espada Ancestral": [
-        "Essa lâmina brilhou nos tempos antigos, sabia?",
-        "Apenas guerreiros escolhidos empunhavam isso."
-      ],
-      "Elixir da Lua": [
-        "Uma gota disso já salvou heróis em campo de batalha.",
-        "Extremamente raro! Foi feito sob a luz da lua cheia."
-      ]
-    };
+    const mercadorias = [
+      "death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
+      "butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp",
+      "antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp",
+      "rotten_crystal_sword_elden_ring_wiki_guide_200px.webp",
+      "beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+      "great_katana_great_katana_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+      "deadly_poison_perfume_bottle_perfume_bottles_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
+      "watchdogs_greatsword_colossal_swords_elden_ring_wiki_guide_200px.webp",
+      "curseblades_cirque_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+      "wraith_calling_bell_elden_ring_wiki_guide_200px.png",
+      "light_crossbow_weapon_elden_ring_wiki_guide_200px.webp",
+      "azurs-glintstone-staff-weapon-elden-ring-wiki-guide-200.webp",
+      "prince_of_deaths_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "staff_of_the_guilty_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "rotten_crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "crystal_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "gelmir_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "carian_regal_scepter_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "staff_of_loss_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "carian_glintblade_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "carian_glintstone_staff_glintstone_staffs-elden-ring-wiki-guide-200.webp",
+      "lusats_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "azurs_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "demi-human_queens_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "diggers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "astrologers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp",
+      "dryleaf_seal_glinstone_staff_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
+      "staff_of_the_great_beyond_glintstone_staff_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
+      "meteorite_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp"
+    ];
 
-    function falaAleatoria(lista) {
-      const index = Math.floor(Math.random() * lista.length);
-      return lista[index];
-    }
-
-    document.getElementById("falaVendedor").textContent = falaAleatoria(falasIniciais);
-
-    function mostrarNovidade() {
-      document.getElementById("respostaVendedor").textContent = falaAleatoria(novidades);
+    function contarNovidade() {
+      const aleatoria = novidades[Math.floor(Math.random() * novidades.length)];
+      document.getElementById('fala-vendedor').innerText = aleatoria;
     }
 
     function mostrarMercadorias() {
-      document.getElementById("respostaVendedor").textContent = "Você é mesmo sem papo, hein?";
-      document.getElementById("mercadorias").style.display = "block";
+      document.getElementById('fala-vendedor').innerText = "Você é mesmo sem papo, hein? Muito bem, aqui está o que tenho...";
+      const container = document.getElementById('mercadorias');
+      container.innerHTML = "";
+      container.style.display = "block";
+
+      mercadorias.forEach(nomeArquivo => {
+        const div = document.createElement('div');
+        div.className = 'mercadoria';
+
+        const img = document.createElement('img');
+        img.src = `https://github.com/seuusuario/seurepositorio/blob/main/imagens/${nomeArquivo}?raw=true`;
+        img.alt = nomeArquivo;
+        img.onclick = () => {
+          const falas = [
+            "Um item raríssimo, digno dos grandes guerreiros!",
+            "Essa arma... forjada nas profundezas esquecidas."
+          ];
+          const aleatoria = falas[Math.floor(Math.random() * falas.length)];
+          alert(aleatoria);
+        };
+
+        const desc = document.createElement('div');
+        desc.className = 'descricao';
+        desc.innerText = `Nome: ${nomeArquivo.split('_')[0].replace('-', ' ')} | Valor: ??? Runas`;
+
+        div.appendChild(img);
+        div.appendChild(desc);
+        container.appendChild(div);
+      });
     }
 
-    function descreverItem(nome) {
-      const falas = elogiosItens[nome];
-      alert(falaAleatoria(falas));
-    }
-
-    function sairLoja() {
-      alert(falaAleatoria(["Então saia!", "Não perca meu tempo!", "Volte quando tiver algo pra trocar!"]));
+    function sairDaLoja() {
+      const falas = ["Então saia!", "Volte quando tiver algo que preste!", "Não me faça perder tempo!"];
+      const aleatoria = falas[Math.floor(Math.random() * falas.length)];
+      alert(aleatoria);
       window.close();
     }
   </script>
