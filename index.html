@@ -1,87 +1,109 @@
-<script>
-    const items = [/*... seus itens ...*/];
-
-    const frasesDuque = [
-        "O DUQUE está negociando seus itens, aguarde.",
-        "O DUQUE partiu rumo ao Reino da Névoa Eterna.",
-        "O DUQUE está indo para as Terras Proibidas.",
-        "O DUQUE foi visto nas margens da Árvore-Mãe.",
-        "O DUQUE está dormindo sob as cinzas de um antigo dragão."
-    ];
-
-    function formatarHora(h, m) {
-        return h.toString().padStart(2, '0') + ":" + m.toString().padStart(2, '0');
-    }
-
-    function escolherItensAleatorios(quantidade) {
-        let escolhidos = [];
-        let usados = new Set();
-        while (escolhidos.length < quantidade) {
-            let i = Math.floor(Math.random() * items.length);
-            if (!usados.has(i)) {
-                escolhidos.push(items[i]);
-                usados.add(i);
-            }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja do Duque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
-        return escolhidos;
-    }
 
-    function mostrarFechada(proximaAbertura) {
-        const storeDiv = document.getElementById("store");
-        const loadingDiv = document.getElementById("loading");
-        const horarioDiv = document.getElementById("horario");
-        const timerDiv = document.getElementById("timer");
+        .shop-container {
+            text-align: center;
+            margin-top: 50px;
+        }
 
-        storeDiv.innerHTML = "";
-        horarioDiv.innerHTML = "";
+        .shop-item {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 150px;
+            text-align: center;
+        }
 
-        const frase = frasesDuque[Math.floor(Math.random() * frasesDuque.length)];
-        const [h, m] = proximaAbertura.split(":");
-        loadingDiv.innerHTML = `${frase}<br><br><strong>O DUQUE retornará às ${formatarHora(h, m)}.</strong>`;
+        .shop-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
 
-        // Timer para a abertura da loja
-        const tempoRestante = (h * 60 + m) - (new Date().getHours() * 60 + new Date().getMinutes());
-        const minutosEspera = tempoRestante > 0 ? tempoRestante : (24 * 60 + tempoRestante);
+        .shop-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
 
-        const intervalo = setInterval(() => {
-            const minutos = Math.floor(minutosEspera / 60);
-            const segundos = minutosEspera % 60;
-            timerDiv.innerHTML = `Faltam ${minutos}m ${segundos}s para a loja abrir.`;
+        .shop-item p {
+            font-size: 14px;
+            color: #555;
+        }
 
-            minutosEspera--;
-            if (minutosEspera <= 0) {
-                clearInterval(intervalo);
-                timerDiv.innerHTML = "A loja está aberta agora!";
-            }
-        }, 1000);
-    }
+        .loading-message {
+            font-size: 18px;
+            color: red;
+        }
 
-    // Definir horário aleatório local para abrir
-    const agora = new Date();
-    const horaAgora = agora.getHours();
-    const minutoAgora = agora.getMinutes();
+    </style>
+</head>
+<body>
+    <div class="shop-container">
+        <h1>Loja do Duque</h1>
 
-    let horarioAbertura = localStorage.getItem("duque_abre_em");
+        <div id="shop-status">
+            <p class="loading-message">O DUQUE está negociando seus itens, aguarde...</p>
+        </div>
 
-    if (!horarioAbertura) {
-        const horaAleatoria = 8 + Math.floor(Math.random() * 14); // 8h até 21h
-        const minutoAleatorio = Math.floor(Math.random() * 60);
-        horarioAbertura = `${horaAleatoria}:${minutoAleatorio}`;
-        localStorage.setItem("duque_abre_em", horarioAbertura);
-    }
+        <div id="shop-items" style="display:none;">
+            <div class="shop-item">
+                <img src="academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Academy Glintstone Staff">
+                <h3>Academy Glintstone Staff</h3>
+                <p>Preço: 5000</p>
+            </div>
 
-    const [horaAbertura, minutoAbertura] = horarioAbertura.split(":").map(Number);
-    const minutosAbertura = horaAbertura * 60 + minutoAbertura;
-    const minutosAgora = horaAgora * 60 + minutoAgora;
-    const duracaoMinutos = 23;
-    const minutosFechamento = minutosAbertura + duracaoMinutos;
+            <div class="shop-item">
+                <img src="albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Albinauric Staff">
+                <h3>Albinauric Staff</h3>
+                <p>Preço: 4500</p>
+            </div>
 
-    const horaFechamento = Math.floor(minutosFechamento / 60);
-    const minutoFechamento = minutosFechamento % 60;
+            <div class="shop-item">
+                <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
+                <h3>Antspur Rapier</h3>
+                <p>Preço: 3000</p>
+            </div>
 
-    if (minutosAgora >= minutosAbertura && minutosAgora <= minutosFechamento) {
-        mostrarLoja(horaAbertura, minutoAbertura, horaFechamento, minutoFechamento);
-    } else {
-        mostrarFechada(horarioAbertura);
-    }
-</script>
+            <div class="shop-item">
+                <img src="astrologers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Astrologer's Staff">
+                <h3>Astrologer's Staff</h3>
+                <p>Preço: 6000</p>
+            </div>
+
+            <!-- Adicione mais itens da loja aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Função para simular a loja abrindo após um tempo aleatório
+        function openShop() {
+            const shopStatus = document.getElementById('shop-status');
+            const shopItems = document.getElementById('shop-items');
+
+            // Esconde a mensagem de loading
+            shopStatus.style.display = 'none';
+
+            // Exibe os itens da loja
+            shopItems.style.display = 'block';
+        }
+
+        // Simula o atraso aleatório para a abertura da loja (entre 5 a 10 segundos)
+        const randomDelay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+        setTimeout(openShop, randomDelay);
+    </script>
+</body>
+</html>
