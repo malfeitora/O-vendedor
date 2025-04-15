@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>O VENDENDO</title>
@@ -10,17 +11,41 @@
       padding: 40px;
       text-align: center;
     }
+    h1 {
+      margin-top: 20px;
+    }
     .vendedor {
       font-size: 1.5rem;
-      margin-top: 20vh;
+      margin-top: 20px;
       animation: fadeIn 2s ease-in-out;
     }
     .mercadorias {
       display: none;
       margin-top: 20px;
     }
-    .botao {
+    .mercadoria {
+      display: inline-block;
+      margin: 10px;
+    }
+    .mercadoria img {
+      width: 120px;
+      height: 120px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .mercadoria img:hover {
+      transform: scale(1.05);
+    }
+    .descricao {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    .botoes {
       margin-top: 30px;
+    }
+    .botao {
+      margin: 10px;
       padding: 10px 20px;
       font-size: 1rem;
       background-color: #444;
@@ -41,14 +66,39 @@
 <body>
   <h1>O VENDENDO</h1>
   <div class="vendedor" id="falaVendedor"></div>
-  <button class="botao" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
+  
+  <!-- Botões de interação -->
+  <div class="botoes">
+    <button class="botao" onclick="mostrarNovidade()">Me conte as novidades</button>
+    <button class="botao" onclick="mostrarMercadorias()">Me mostre as mercadorias</button>
+    <button class="botao" onclick="sairLoja()">Não há nada que eu queira aqui</button>
+  </div>
+  
+  <!-- Resposta do vendedor -->
   <div class="vendedor" id="respostaVendedor"></div>
+  
+  <!-- Mercadorias -->
   <div class="mercadorias" id="mercadorias">
-    <p>- Poção misteriosa</p>
-    <p>- Espada enferrujada</p>
-    <p>- Mapa antigo</p>
-  </div>  <script>
-    const falas = [
+    <div class="mercadoria">
+      <img src="https://via.placeholder.com/120" onclick="descreverItem('Espada Ancestral')">
+      <div class="descricao">
+        <strong>Espada Ancestral</strong><br>
+        Dano: 120 | Força necessária: 18<br>
+        Valor: 1200 Runas
+      </div>
+    </div>
+    <div class="mercadoria">
+      <img src="https://via.placeholder.com/120" onclick="descreverItem('Elixir da Lua')">
+      <div class="descricao">
+        <strong>Elixir da Lua</strong><br>
+        Recupera 50% do HP | INT necessária: 10<br>
+        Valor: 600 Runas
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const falasIniciais = [
       "Então você gostaria de ver minhas mercadorias do dia?",
       "Ah, um novo cliente... veja o que tenho para hoje.",
       "Aproveite enquanto durarem os estoques!",
@@ -56,16 +106,75 @@
       "Vamos ver se algo te agrada hoje."
     ];
 
-    function falaAleatoria() {
-      const index = Math.floor(Math.random() * falas.length);
-      return falas[index];
+    const novidades = [
+      "Você sabia que é possível fabricar armas?",
+      "Boatos dizem que uma besta lendária ronda o pântano...",
+      "Tem gente por aí fundindo almas com aço.",
+      "Se for até as ruínas de Nyros, leve tochas. Muitas tochas.",
+      "Uma guilda secreta foi vista ao sul da torre esquecida.",
+      "Estão vendendo pedras encantadas por migalhas na cidade!",
+      "Dizem que um novo dragão foi visto ao norte.",
+      "Um talismã antigo foi achado em uma cripta lacrada.",
+      "As sombras da floresta estão ficando mais densas...",
+      "Um viajante misterioso deixou uma espada cravada na pedra.",
+      "Dizem que um pacto sombrio está se formando nas profundezas.",
+      "A cidade subterrânea está acordando de novo...",
+      "Alguém domou um lobo com olhos de rubi.",
+      "O tempo está instável... algo grande está por vir.",
+      "O mercado de runas está uma loucura!",
+      "Magos estão sumindo próximo ao cemitério amaldiçoado.",
+      "Estão forjando armaduras com escamas de serpente.",
+      "Reinos estão entrando em guerra silenciosa.",
+      "Um cometa foi visto no céu. Isso nunca é bom sinal.",
+      "Portais antigos estão se reabrindo...",
+      "A floresta canta durante a noite. E não é música boa.",
+      "Velhos deuses sussurram nas ruínas perdidas.",
+      "Runas negras apareceram nas muralhas do castelo.",
+      "Espelhos estão mostrando reflexos que não são seus.",
+      "A lua ficou vermelha ontem. Ninguém dormiu.",
+      "Mensagens apareceram em línguas esquecidas.",
+      "Chamas azuis foram vistas no desfiladeiro.",
+      "Mercadores estão fugindo da capital.",
+      "Algo se esconde nas neblinas eternas...",
+      "A Ordem dos Corvos silenciou..."
+    ];
+
+    const elogiosItens = {
+      "Espada Ancestral": [
+        "Essa lâmina brilhou nos tempos antigos, sabia?",
+        "Apenas guerreiros escolhidos empunhavam isso."
+      ],
+      "Elixir da Lua": [
+        "Uma gota disso já salvou heróis em campo de batalha.",
+        "Extremamente raro! Foi feito sob a luz da lua cheia."
+      ]
+    };
+
+    function falaAleatoria(lista) {
+      const index = Math.floor(Math.random() * lista.length);
+      return lista[index];
     }
 
-    document.getElementById("falaVendedor").textContent = falaAleatoria();
+    document.getElementById("falaVendedor").textContent = falaAleatoria(falasIniciais);
+
+    function mostrarNovidade() {
+      document.getElementById("respostaVendedor").textContent = falaAleatoria(novidades);
+    }
 
     function mostrarMercadorias() {
       document.getElementById("respostaVendedor").textContent = "Você é mesmo sem papo, hein?";
       document.getElementById("mercadorias").style.display = "block";
     }
-  </script></body>
+
+    function descreverItem(nome) {
+      const falas = elogiosItens[nome];
+      alert(falaAleatoria(falas));
+    }
+
+    function sairLoja() {
+      alert(falaAleatoria(["Então saia!", "Não perca meu tempo!", "Volte quando tiver algo pra trocar!"]));
+      window.close();
+    }
+  </script>
+</body>
 </html>
