@@ -1,31 +1,133 @@
-<div class="mercadoria">
-  <img src="imagens/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
-  <p>Death Knight's Longhaft Axe: Uma arma poderosa usada pelos cavaleiros da morte. Ela possui um bom equilíbrio entre dano e velocidade de ataque. Requer Força e Destreza para ser usada com eficiência.</p>
-  <p><strong>Atributos necessários:</strong> Força 20, Destreza 15</p>
-</div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O DUQUE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .item {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .item-description {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .dialog {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .dialog.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>O DUQUE</h1>
+    <p>Fale com o Duque para ver suas mercadorias.</p>
 
-<div class="mercadoria">
-  <img src="imagens/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Butchering Knife" />
-  <p>Butchering Knife: Uma lâmina afiada usada para cortar através da carne e ossos com facilidade. Ideal para caçadores. Aumenta o dano contra inimigos grandes.</p>
-  <p><strong>Atributos necessários:</strong> Força 18, Destreza 12</p>
-</div>
+    <div class="container">
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft" />
+            <div class="item-description">
+                <p>Machado Longhaft - Um poderoso machado usado por guerreiros de elite.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Faca Butcher" />
+            <div class="item-description">
+                <p>Faca Butcher - Ideal para cortar através de defesas com grande precisão.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="https://raw.githubusercontent.com/seu-usuario/seu-repositorio/main/imagens/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapier Antspur" />
+            <div class="item-description">
+                <p>Rapier Antspur - Uma espada fina para ataques rápidos e precisos.</p>
+            </div>
+        </div>
+        <!-- Continue com os outros itens -->
+    </div>
 
-<div class="mercadoria">
-  <img src="imagens/antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier" />
-  <p>Antspur Rapier: Uma espada de estocada de lâmina fina, com alta precisão e velocidade. Ideal para ataques rápidos e certeiros em pontos vitais.</p>
-  <p><strong>Atributos necessários:</strong> Destreza 25</p>
-</div>
+    <div class="dialog" id="dukeDialog">
+        <p id="dukeText"></p>
+    </div>
 
-<div class="mercadoria">
-  <img src="imagens/rotten_crystal_sword_elden_ring_wiki_guide_200px.webp" alt="Rotten Crystal Sword" />
-  <p>Rotten Crystal Sword: Uma espada de cristal danificada, mas com grande poder mágico. Suas lâminas podem corroer a resistência do inimigo.</p>
-  <p><strong>Atributos necessários:</strong> Força 16, Inteligência 18</p>
-</div>
+    <button onclick="mostrarDialog()">Fale com o Duque</button>
 
-<div class="mercadoria">
-  <img src="imagens/beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp" alt="Beast Claw" />
-  <p>Beast Claw: Garras bestiais que canalizam poder animal, permitindo ao usuário realizar ataques devastadores com agilidade.</p>
-  <p><strong>Atributos necessários:</strong> Força 18, Destreza 14</p>
-</div>
+    <script>
+        const falas = [
+            "Saudações, aventureiro. Olhe essas mercadorias raras que tenho!",
+            "Esta é uma lâmina forjada nas profundezas da terra.",
+            "Só os guerreiros mais poderosos podem usar um machado como este.",
+            "Se você busca agilidade, a faca butcher é sua melhor escolha.",
+            "A rapier antspur é afiada como uma adaga, ideal para ataques rápidos.",
+            "Esta espada cristalizada é imbatível contra qualquer inimigo.",
+            "A garra de besta é perfeita para os caçadores de monstros.",
+            "Você gostaria de algo mais afiado? Veja a grande katana.",
+            "Este perfume pode causar morte instantânea ao inimigo.",
+            "A espada dos cães vigilantes é uma verdadeira obra-prima.",
+            "O mal dessa lâmina não tem fim, tome cuidado ao usá-la.",
+            "A campainha do espectro invoca o mal, use com sabedoria.",
+            "A besta leve é ideal para emboscadas rápidas à distância.",
+            "A vara de Azur é poderosa para quem busca domínio da magia.",
+            "O cajado do príncipe da morte contém poderes de necromancia.",
+            "O cajado do culpado possui um poder sombriamente eficaz.",
+            "O cristal negro é uma relíquia da antiguidade, com grande poder.",
+            "O cajado de Gelmir é a chave para a magia do fogo.",
+            "O cajado Albinauric é perfeito para magos místicos e experimentados.",
+            "O cetro real cariano é digno de reis e rainhas.",
+            "O cajado da perda é misterioso e cheio de poder desconhecido.",
+            "Este cajado invoca lâminas de gelo, um poder devastador.",
+            "O cajado Lusat é a verdadeira joia da feitiçaria de alta classe."
+        ];
 
-<!-- Continue adicionando os outros itens conforme o padrão abaixo -->
+        let falasIndex = 0;
+
+        function mostrarDialog() {
+            const dialog = document.getElementById('dukeDialog');
+            const dukeText = document.getElementById('dukeText');
+
+            dukeText.textContent = falas[falasIndex];
+            falasIndex = (falasIndex + 1) % falas.length; // Passa pelas falas em loop
+            dialog.classList.add('active');
+        }
+    </script>
+</body>
+</html>
