@@ -5,98 +5,90 @@
   <title>O DUQUE</title>
   <style>
     body {
-      background-color: #1a1a1a;
-      color: #f0e6d2;
+      background-color: #1c1c1c;
+      color: #f5f5f5;
       font-family: 'Georgia', serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
-    h1 {
+    header {
+      background-color: #2b2b2b;
       text-align: center;
-      font-size: 3em;
+      padding: 20px;
+      font-size: 2em;
+      font-weight: bold;
+      border-bottom: 3px solid #444;
     }
-    .shop {
+    .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      padding: 20px;
     }
     .item {
-      background-color: #2a2a2a;
+      background-color: #292929;
       border: 1px solid #444;
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 15px;
       width: 220px;
-      transition: transform 0.3s;
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
     }
     .item:hover {
       transform: scale(1.05);
-      cursor: pointer;
+      background-color: #333;
     }
     .item img {
       width: 100px;
       height: auto;
+      margin-bottom: 10px;
     }
-    .duke-message {
-      background-color: #333;
-      border: 1px solid #555;
-      padding: 15px;
-      margin-top: 20px;
+    .speech {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #111;
+      border: 2px solid #444;
+      border-radius: 10px;
+      padding: 15px 20px;
+      max-width: 90%;
+      text-align: center;
       font-style: italic;
-      border-radius: 8px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>O DUQUE</h1>
-  <div class="shop" id="shop"></div>
-  <div class="duke-message" id="dukeMessage">Escolha um item, viajante...</div>  <script>
-    const items = [
-      {
-        name: "Machado Longhaft",
-        image: "death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp",
-        description: "Machado amaldiçoado de alcance estendido.",
-        price: "5.000 runas",
-        message: "Ah... O Machado Longhaft. Perfeito para ceifar gigantes. Forte, pesado, e cruel."
-      },
-      {
-        name: "Cutelo de Carniceiro",
-        image: "butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp",
-        description: "Pesado, cruel e sedento por sangue.",
-        price: "4.200 runas",
-        message: "Corte limpo ou brutalidade? O Cutelo de Carniceiro entrega os dois."
-      },
-      {
-        name: "Rapieira Espinhosa",
-        image: "antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp",
-        description: "Inflige podridão escarlate com elegância.",
-        price: "4.000 runas",
-        message: "A Rapieira Espinhosa. Cada perfuração carrega agonia e pestilência."
-      },
-      {
-        name: "Espada de Cristal Podre",
-        image: "rotten_crystal_sword_elden_ring_wiki_guide_200px.webp",
-        description: "Afeta inimigos com podridão e magia.",
-        price: "4.500 runas",
-        message: "Cristal podre e pura destruição. Uma lâmina para corromper o mundo."
-      },
-      {
-        name: "Garras de Besta",
-        image: "beast_claw_beast_claws_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_200px.webp",
-        description: "Golpes rápidos e ferozes como a própria fera.",
-        price: "3.800 runas",
-        message: "Garras de Besta... perfeitas para quem gosta de rasgar carne com estilo."
-      }
-      // Adicione mais mercadorias aqui
-    ];
-
-    const shopDiv = document.getElementById("shop");
-    const dukeMessage = document.getElementById("dukeMessage");
-
-    items.forEach(item => {
-      const div = document.createElement("div");
-      div
+  <header>O DUQUE</header>
+  <div class="container">
+    <div class="item" onclick="speak('Ah... O Machado Longhaft. Perfeito para ceifar gigantes.')">
+      <img src="death_knights_longhaft_axe_elden_ring_shadow_of_the_erdtree_dlc_wiki_guide_75px.webp" alt="Machado Longhaft">
+      <p><strong>Machado Longhaft</strong><br>Machado amaldiçoado de alcance estendido.<br><strong>Valor:</strong> 5.000 runas</p>
+    </div>
+    <div class="item" onclick="speak('Corte limpo ou brutalidade? O Cutelo de Carniceiro entrega os dois.')">
+      <img src="butchering_knife_greataxe_weapon_elden_ring_wiki_guide_200px.webp" alt="Cutelo de Carniceiro">
+      <p><strong>Cutelo de Carniceiro</strong><br>Pesado, cruel e sedento por sangue.<br><strong>Valor:</strong> 4.200 runas</p>
+    </div>
+    <div class="item" onclick="speak('A Rapieira Espinhosa. Cada perfuração carrega agonia e pestilência.')">
+      <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Rapieira Espinhosa">
+      <p><strong>Rapieira Espinhosa</strong><br>Inflige podridão escarlate com elegância.<br><strong>Valor:</strong> 4.000 runas</p>
+    </div>
+    <!-- Continue adicionando os outros itens da mesma forma -->
+  </div>
+  <div class="speech" id="speechBox"></div>
+  <script>
+    function speak(text) {
+      const box = document.getElementById('speechBox');
+      box.innerText = text;
+      box.style.display = 'block';
+      clearTimeout(window.speechTimeout);
+      window.speechTimeout = setTimeout(() => {
+        box.style.display = 'none';
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
