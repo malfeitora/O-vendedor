@@ -1,174 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja do Duque</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2f2f2f;
-            color: #f1f1f1;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loja do Duque</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #2f2f2f;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #FFD700;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
+    h1 {
+      font-size: 2.5rem;
+      color: #FFD700;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
 
-        .shop-container {
-            text-align: center;
-            margin-top: 30px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        }
+    .shop-container {
+      text-align: center;
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
 
-        .shop-item {
-            display: inline-block;
-            width: 150px;
-            margin: 20px;
-            padding: 15px;
-            background-color: #3c3c3c;
-            border-radius: 12px;
-            transition: transform 0.2s ease-in-out;
-        }
+    .shop-item {
+      display: inline-block;
+      width: 200px;
+      margin: 20px;
+      padding: 15px;
+      background-color: #3c3c3c;
+      border-radius: 12px;
+      transition: transform 0.2s ease-in-out;
+    }
 
-        .shop-item img {
-            width: 100%;
-            height: 150px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
+    .shop-item img {
+      width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
 
-        .shop-item h3 {
-            font-size: 1.2rem;
-            color: #FFD700;
-            margin-top: 10px;
-        }
+    .shop-item h3 {
+      font-size: 1.2rem;
+      color: #FFD700;
+      margin-top: 10px;
+    }
 
-        .shop-item p {
-            font-size: 1rem;
-            color: #ccc;
-        }
+    .shop-item p {
+      font-size: 1rem;
+      color: #ccc;
+    }
 
-        .loading-message {
-            font-size: 1.2rem;
-            color: #FF6347;
-            margin-top: 10px;
-        }
+    .loading-message {
+      font-size: 1.2rem;
+      color: #FF6347;
+      margin-top: 10px;
+    }
 
-        .timer {
-            font-size: 1.5rem;
-            color: #FF6347;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+    .timer {
+      font-size: 1.5rem;
+      color: #FF6347;
+      margin-top: 20px;
+      font-weight: bold;
+    }
 
-        #duque-message {
-            font-size: 1.8rem;
-            color: #32CD32;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+    #duque-message {
+      font-size: 1.8rem;
+      color: #32CD32;
+      margin-top: 20px;
+      font-weight: bold;
+    }
 
-        .shop-item:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-        }
+    .shop-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
 
-        .shop-item h3, .shop-item p {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-        }
-    </style>
+    .shop-item h3, .shop-item p {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+  </style>
 </head>
 <body>
-    <div class="shop-container">
-        <h1>Loja do Duque</h1>
+  <div class="shop-container">
+    <h1>Loja do Duque</h1>
 
-        <div id="shop-status">
-            <p class="loading-message">O DUQUE está negociando seus itens, aguarde...</p>
-            <p id="timer" class="timer"></p>
-        </div>
-
-        <div id="shop-items" style="display:none;">
-            <p id="duque-message"></p>
-            <div id="items-container"></div>
-        </div>
+    <div id="shop-status">
+      <p class="loading-message">O DUQUE está negociando seus itens, aguarde...</p>
+      <p id="timer" class="timer"></p>
     </div>
 
-    <script>
-        const allItems = [
-            { name: "Moonveil", price: 7000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/moonveil_katana_weapon_elden_ring_wiki_guide_200px.png" },
-            { name: "Rivers of Blood", price: 8000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/rivers_of_blood_katana_weapon_elden_ring_wiki_guide_200px.png" },
-            { name: "Dark Moon Greatsword", price: 10000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/dark_moon_greatsword_greatsword_weapon_elden_ring_wiki_guide_200px.png" },
-            { name: "Blasphemous Blade", price: 9500, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/blasphemous_blade_greatsword_weapon_elden_ring_wiki_guide_200px.png" },
-            { name: "Reduvia", price: 3000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/reduvia_dagger_weapon_elden_ring_wiki_guide_200px.png" },
-            { name: "Meteorite Staff", price: 4000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/meteorite_staff_elden_ring_wiki_guide_200px.png" },
-            { name: "Comet Azur", price: 12000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/comet_azur_sorcery_elden_ring_wiki_guide_200px.png" },
-            { name: "Carian Regal Scepter", price: 8500, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/carian_regal_scepter_elden_ring_wiki_guide_200px.png" }
-        ];
+    <div id="shop-items" style="display:none;">
+      <p id="duque-message"></p>
+      <div id="items-container"></div>
+    </div>
+  </div>
 
-        function getRandomItems(n) {
-            const shuffled = [...allItems].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, n);
-        }
+  <script>
+    const allItems = [
+      {
+        name: "Moonveil",
+        price: 7000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/moonveil_katana_weapon_elden_ring_wiki_guide_200px.png",
+        description: "Katana mágica que libera ondas de energia ao atacar."
+      },
+      {
+        name: "Rivers of Blood",
+        price: 8000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/rivers_of_blood_katana_weapon_elden_ring_wiki_guide_200px.png",
+        description: "Katana que causa sangramento rápido nos inimigos."
+      },
+      {
+        name: "Dark Moon Greatsword",
+        price: 10000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/dark_moon_greatsword_greatsword_weapon_elden_ring_wiki_guide_200px.png",
+        description: "Espada lendária com poder de gelo e magia lunar."
+      },
+      {
+        name: "Blasphemous Blade",
+        price: 9500,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/blasphemous_blade_greatsword_weapon_elden_ring_wiki_guide_200px.png",
+        description: "Espada que drena vida dos inimigos ao causar dano."
+      },
+      {
+        name: "Reduvia",
+        price: 3000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/reduvia_dagger_weapon_elden_ring_wiki_guide_200px.png",
+        description: "Adaga que dispara lâminas de sangue à distância."
+      },
+      {
+        name: "Meteorite Staff",
+        price: 4000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/meteorite_staff_elden_ring_wiki_guide_200px.png",
+        description: "Cajado poderoso para magias gravitacionais."
+      },
+      {
+        name: "Comet Azur",
+        price: 12000,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/comet_azur_sorcery_elden_ring_wiki_guide_200px.png",
+        description: "Feitiço que dispara um cometa de energia pura."
+      },
+      {
+        name: "Carian Regal Scepter",
+        price: 8500,
+        img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/carian_regal_scepter_elden_ring_wiki_guide_200px.png",
+        description: "Cetro real que amplifica feitiços lunares."
+      }
+    ];
 
-        function openShop() {
-            document.getElementById('shop-status').style.display = 'none';
-            document.getElementById('shop-items').style.display = 'block';
-            document.getElementById('duque-message').textContent = "Bem-vindo meu caro! Veio para barganhar ?";
-            const itemsContainer = document.getElementById('items-container');
-            itemsContainer.innerHTML = '';
+    let shopOpen = false;
+    let openTimeout;
+    let closeTimeout;
 
-            const items = getRandomItems(4 + Math.floor(Math.random() * 3)); // entre 4 e 6 itens
-
-            items.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('shop-item');
-                div.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>Preço: ${item.price}</p>
-                `;
-                itemsContainer.appendChild(div);
-            });
-        }
-
-        function formatTime(ms) {
-            const totalSeconds = Math.floor(ms / 1000);
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            return `${minutes}m ${seconds}s`;
-        }
-
-        function startTimer() {
-            const delay = (10 + Math.floor(Math.random() * 11)) * 60 * 1000; // entre 10-20 min
-            const openTime = Date.now() + delay;
-            const timerElement = document.getElementById('timer');
-
-            const interval = setInterval(() => {
-                const remaining = openTime - Date.now();
-                if (remaining <= 0) {
-                    clearInterval(interval);
-                    openShop();
-                } else {
-                    timerElement.textContent = `A loja abrirá em: ${formatTime(remaining)}`;
-                }
-            }, 1000);
-        }
-
-        window.onload = startTimer;
-    </script>
-</body>
-</html>
+    function getRandomItems(n) {
+0
