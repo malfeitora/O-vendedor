@@ -82,7 +82,6 @@
             font-weight: bold;
         }
 
-        /* Animations for item hover */
         .shop-item:hover {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
@@ -104,80 +103,71 @@
 
         <div id="shop-items" style="display:none;">
             <p id="duque-message"></p>
-            <div class="shop-item">
-                <img src="academy_glintstone_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Academy Glintstone Staff">
-                <h3>Academy Glintstone Staff</h3>
-                <p>Preço: 5000</p>
-            </div>
-
-            <div class="shop-item">
-                <img src="albinauric_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Albinauric Staff">
-                <h3>Albinauric Staff</h3>
-                <p>Preço: 4500</p>
-            </div>
-
-            <div class="shop-item">
-                <img src="antspur_rapier_thrusting_sword_weapon_elden_ring_wiki_guide_200px.webp" alt="Antspur Rapier">
-                <h3>Antspur Rapier</h3>
-                <p>Preço: 3000</p>
-            </div>
-
-            <div class="shop-item">
-                <img src="astrologers_staff_glintstonestaff_weapon_elden_ring_wiki_guide_200px.webp" alt="Astrologer's Staff">
-                <h3>Astrologer's Staff</h3>
-                <p>Preço: 6000</p>
-            </div>
-
-            <!-- Adicione mais itens da loja aqui -->
+            <div id="items-container"></div>
         </div>
     </div>
 
     <script>
-        // Função para abrir a loja
-        function openShop() {
-            const shopStatus = document.getElementById('shop-status');
-            const shopItems = document.getElementById('shop-items');
-            const duqueMessage = document.getElementById('duque-message');
+        const allItems = [
+            { name: "Moonveil", price: 7000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/moonveil_katana_weapon_elden_ring_wiki_guide_200px.png" },
+            { name: "Rivers of Blood", price: 8000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/rivers_of_blood_katana_weapon_elden_ring_wiki_guide_200px.png" },
+            { name: "Dark Moon Greatsword", price: 10000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/dark_moon_greatsword_greatsword_weapon_elden_ring_wiki_guide_200px.png" },
+            { name: "Blasphemous Blade", price: 9500, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/blasphemous_blade_greatsword_weapon_elden_ring_wiki_guide_200px.png" },
+            { name: "Reduvia", price: 3000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/reduvia_dagger_weapon_elden_ring_wiki_guide_200px.png" },
+            { name: "Meteorite Staff", price: 4000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/meteorite_staff_elden_ring_wiki_guide_200px.png" },
+            { name: "Comet Azur", price: 12000, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/comet_azur_sorcery_elden_ring_wiki_guide_200px.png" },
+            { name: "Carian Regal Scepter", price: 8500, img: "https://eldenring.wiki.fextralife.com/file/Elden-Ring/carian_regal_scepter_elden_ring_wiki_guide_200px.png" }
+        ];
 
-            // Esconde a mensagem de loading
-            shopStatus.style.display = 'none';
-
-            // Exibe os itens da loja
-            shopItems.style.display = 'block';
-
-            // Exibe a mensagem do Duque
-            duqueMessage.textContent = "Bem-vindo meu caro! Veio para barganhar ?";
+        function getRandomItems(n) {
+            const shuffled = [...allItems].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, n);
         }
 
-        // Função para formatar o tempo restante para abrir a loja
-        function formatTime(timeInMs) {
-            const seconds = Math.floor((timeInMs / 1000) % 60);
-            const minutes = Math.floor((timeInMs / 1000 / 60) % 60);
+        function openShop() {
+            document.getElementById('shop-status').style.display = 'none';
+            document.getElementById('shop-items').style.display = 'block';
+            document.getElementById('duque-message').textContent = "Bem-vindo meu caro! Veio para barganhar ?";
+            const itemsContainer = document.getElementById('items-container');
+            itemsContainer.innerHTML = '';
+
+            const items = getRandomItems(4 + Math.floor(Math.random() * 3)); // entre 4 e 6 itens
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('shop-item');
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>Preço: ${item.price}</p>
+                `;
+                itemsContainer.appendChild(div);
+            });
+        }
+
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
             return `${minutes}m ${seconds}s`;
         }
 
-        // Função para calcular a diferença até o horário de abertura da loja
         function startTimer() {
-            // Define o horário de abertura da loja para 1 hora após o horário atual
-            const now = new Date();
-            const openTime = new Date(now.getTime() + 60 * 60 * 1000); // Abre em 1 hora
-
+            const delay = (10 + Math.floor(Math.random() * 11)) * 60 * 1000; // entre 10-20 min
+            const openTime = Date.now() + delay;
             const timerElement = document.getElementById('timer');
-            const timeUntilOpen = openTime - now;
 
-            // Atualiza o timer a cada segundo
             const interval = setInterval(() => {
-                const timeRemaining = openTime - Date.now();
-                if (timeRemaining <= 0) {
+                const remaining = openTime - Date.now();
+                if (remaining <= 0) {
                     clearInterval(interval);
-                    openShop(); // Abre a loja quando o tempo acabar
+                    openShop();
                 } else {
-                    timerElement.textContent = `A loja abrirá em: ${formatTime(timeRemaining)}`;
+                    timerElement.textContent = `A loja abrirá em: ${formatTime(remaining)}`;
                 }
             }, 1000);
         }
 
-        // Inicia o timer assim que a página carrega
         window.onload = startTimer;
     </script>
 </body>
