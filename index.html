@@ -133,6 +133,7 @@
     </div>
 
     <script>
+        // Função para abrir a loja
         function openShop() {
             const shopStatus = document.getElementById('shop-status');
             const shopItems = document.getElementById('shop-items');
@@ -157,15 +158,9 @@
 
         // Função para calcular a diferença até o horário de abertura da loja
         function startTimer() {
-            // Define o horário de abertura da loja como 16:00 (4 PM)
+            // Define o horário de abertura da loja para 1 hora após o horário atual
             const now = new Date();
-            const openTime = new Date(now);
-            openTime.setHours(16, 0, 0, 0); // A loja abre às 16:00 (4 PM)
-
-            // Se já passou das 16:00, define o horário para o próximo dia
-            if (now > openTime) {
-                openTime.setDate(openTime.getDate() + 1);
-            }
+            const openTime = new Date(now.getTime() + 60 * 60 * 1000); // Abre em 1 hora
 
             const timerElement = document.getElementById('timer');
             const timeUntilOpen = openTime - now;
